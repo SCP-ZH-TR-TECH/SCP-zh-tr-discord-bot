@@ -109,7 +109,7 @@ module.exports = class DurationParser {
           } else { arr.push(last) }
           if (arr.length) {
             var curr = arr.pop()
-            if (curr.length<=2) {
+            if (curr.length==2) {
               this.result.sec = parseInt(curr)
             } else { return this.valid = false }
           }
@@ -121,7 +121,7 @@ module.exports = class DurationParser {
           }
           if (arr.length) {
             var curr = arr.pop()
-            if (curr.length==2) {
+            if (curr.length<=2) {
               this.result.hr = parseInt(curr)
             } else { return this.valid = false }
           }
