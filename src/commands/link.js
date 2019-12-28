@@ -1,0 +1,75 @@
+const {RichEmbed} = require("discord.js");
+const request = require("request");
+const cheerio = require("cheerio");
+
+//usage : &scplink scp-zh-009 => http://scp-zh-tr.wikidot.com/scp-zh-009
+//usage : &scplink scp-4444 us => http://www.scp-wiki.net/scp-4444
+//usage : &scplink scp-cn-001 cn => http://scp-wiki-cn.wikidot.com/scp-cn-001
+
+module.exports.run = async (bot, message, args) => {
+    let SCPStuff = message.content.split(' ').slice(1);
+    switch (SCPStuff.length) {
+        case 0 :
+            return message.channel.send("無法提供網址，用法：&scplink <尾網址> <(繁中則免)/cn/en/int>");
+        case 1 :
+            SCPStuff.push("zh")
+            break
+        case 2 :
+            break
+        default :
+            return message.channel.send("無法提供網址，用法：&scplink <尾網址> <(繁中則免)/cn/en/int>");
+    }
+    let SCPBranch = SCPStuff.pop();
+    if (!(SCPBranch == "zh" || SCPBranch == "en" || SCPBranch == "cn" || SCPBranch == "int")) return message.channel.send("無法提供網址，用法：&scplink <尾網址> <(繁中則免)/cn/en/int>");
+
+    switch (SCPBranch) {
+        case "zh" :
+            SCPStuff.unshift("http://scp-zh-tr.wikidot.com/")
+            SCPStuff.push("內部", "繁中分部")
+        case "cn" :
+            SCPStuff.unshift("http://scp-wiki-cn.wikidot.com/")
+            SCPStuff.push("外部", "簡中分部")
+            break
+        case "en" :
+            SCPStuff.unshift("http://scp-wiki.wikidot.com/")
+            SCPStuff.push("外部", "本部")
+            break
+        case "int" :
+            SCPStuff.unshift("http://scp-int.wikidot.com/")
+            SCPStuff.push("外部", "國際部")
+            break
+    }
+
+    let SCPLink = SCPStuff.shift() + SCPStuff.shift()
+
+    request(SCPLink, (err, res, body) => {
+        if (err) return message.author.send("用法：&scplink <尾網址> <(繁中則免)/cn/us/int>");
+
+        let $ = cheerio.load(body);
+
+        if ($('#page-title').length == 0) SCPStuff.push("不存在之頁面", "從缺")
+        else {
+            if ($('#page-title').length >= 0) {
+                SCPStuff.push($('#page-title').contents().first().text(), $('#prw54355').contents().text());
+            }
+        }
+
+        let SCPEmbed = new RichEmbed()
+        .setColor("#660000")
+        .setTitle(`SCP基金會繁中分部${SCPStuff.shift()}資料庫`)
+        .setDescription(`目前連接至${SCPStuff.shift()}`)
+        .setThumbnail("https://i.imgur.com/xKRFpMu.png")
+        .setAuthor(message.author.username, message.author.avatarURL)
+        .addField("標題", `[${SCPStuff.shift()}](${SCPLink})`, true)
+        .addField("現時評分", SCPStuff.shift(), true)
+        .setTimestamp()
+        .setFooter("若直連結果顯示為*不存在之頁面*代表該頁面尚未被創建。", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
+
+        message.channel.send(SCPEmbed);
+    });
+
+}
+
+module.exports.help ={
+    name: "link"
+}

@@ -1,0 +1,38 @@
+{
+  "name": "scpzhtrbot",
+  "version": "1.0.0",
+  "description": "A scp zh-tr branch bot for discord.",
+  "main": "node index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd src&&node index.js"
+  },
+  "engines": {
+    "node": "12.14.0",
+    "npm": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KyleLin921021/SCP-zh-tr-bot.git"
+  },
+  "author": "ChAoS-UnItY",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KyleLin921021/SCP-zh-tr-bot/issues"
+  },
+  "homepage": "https://github.com/KyleLin921021/SCP-zh-tr-bot#readme",
+  "dependencies": {
+    "better-sqlite3": "^5.4.3",
+    "cheerio": "^1.0.0-rc.3",
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.2.0",
+    "enmap": "^5.2.3",
+    "express": "^4.17.1",
+    "mersenne-twister": "^1.1.0",
+    "moment": "^2.24.0",
+    "moment-duration-format": "^2.2.2",
+    "request": "^2.88.0",
+    "requset": "0.0.1-security",
+    "scpper2.js": "^4.0.2"
+  }
+}
