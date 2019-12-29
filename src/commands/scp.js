@@ -29,6 +29,7 @@ module.exports.run = (bot, message, args) => {
 
         if (typeof B === 'undefined') B = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Icon-round-Question_mark.svg/200px-Icon-round-Question_mark.svg.png"
         if (SCPitem[1] == "從缺") SCPitem[1] = "未知"
+        if (typeof A != 'undefined') A = "http://scp-zh-tr.wikidot.com" + A
 
       let newEmbed = new RichEmbed()
         .setColor("#660000")
