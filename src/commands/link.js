@@ -42,7 +42,7 @@ module.exports.run = async (bot, message, args) => {
     let SCPLink = SCPStuff.shift() + SCPStuff.shift();
 
     request(SCPLink, (err, res, body) => {
-        if (err) return message.author.send("用法：&scplink <尾網址> <(繁中則免)/cn/us/int>");
+        if (err) return message.author.send("用法：&link <尾網址> <(繁中則免)/cn/us/int>");
 
         let $ = cheerio.load(body);
 
