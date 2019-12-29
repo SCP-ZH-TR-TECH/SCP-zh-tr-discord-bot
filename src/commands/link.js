@@ -7,15 +7,13 @@ const cheerio = require("cheerio");
 //usage : &scplink scp-cn-001 cn => http://scp-wiki-cn.wikidot.com/scp-cn-001
 
 module.exports.run = async (bot, message, args) => {
-    let SCPStuff = message.content.split(' ').slice(1);
+    let SCPStuff = args;
     switch (SCPStuff.length) {
-        case 0 :
-            return message.channel.send("無法提供網址，用法：&scplink <尾網址> <(繁中則免)/cn/en/int>");
         case 1 :
-            SCPStuff.push("zh")
-            break
+            SCPStuff.push("zh");
+            break;
         case 2 :
-            break
+            break;
         default :
             return message.channel.send("無法提供網址，用法：&scplink <尾網址> <(繁中則免)/cn/en/int>");
     }
@@ -24,34 +22,37 @@ module.exports.run = async (bot, message, args) => {
 
     switch (SCPBranch) {
         case "zh" :
-            SCPStuff.unshift("http://scp-zh-tr.wikidot.com/")
-            SCPStuff.push("內部", "繁中分部")
+            SCPStuff.unshift("http://scp-zh-tr.wikidot.com/");
+            SCPStuff.push("內部", "繁中分部");
+            break;
         case "cn" :
-            SCPStuff.unshift("http://scp-wiki-cn.wikidot.com/")
-            SCPStuff.push("外部", "簡中分部")
-            break
+            SCPStuff.unshift("http://scp-wiki-cn.wikidot.com/");
+            SCPStuff.push("外部", "簡中分部");
+            break;
         case "en" :
-            SCPStuff.unshift("http://scp-wiki.wikidot.com/")
-            SCPStuff.push("外部", "本部")
-            break
+            SCPStuff.unshift("http://scp-wiki.wikidot.com/");
+            SCPStuff.push("外部", "本部");
+            break;
         case "int" :
-            SCPStuff.unshift("http://scp-int.wikidot.com/")
-            SCPStuff.push("外部", "國際部")
-            break
+            SCPStuff.unshift("http://scp-int.wikidot.com/");
+            SCPStuff.push("外部", "國際部");
+            break;
     }
 
-    let SCPLink = SCPStuff.shift() + SCPStuff.shift()
+    let SCPLink = SCPStuff.shift() + SCPStuff.shift();
 
     request(SCPLink, (err, res, body) => {
         if (err) return message.author.send("用法：&scplink <尾網址> <(繁中則免)/cn/us/int>");
 
         let $ = cheerio.load(body);
 
-        if ($('#page-title').length == 0) SCPStuff.push("不存在之頁面", "從缺")
-        else {
-            if ($('#page-title').length >= 0) {
-                SCPStuff.push($('#page-title').contents().first().text(), $('#prw54355').contents().text());
-            }
+        if (!$('#page-title').length) SCPStuff.push("不存在之頁面", "從缺")
+        else if ($('#page-title').length) {
+          var title = $('#page-title').contents().first().text().trim();
+          var rating = $('.prw54353').contents().first().text().trim();
+          if (title.includes('\n')) { title = title.split('\n').join().trim(); }
+          if (!rating||rating==undefined) { rating="從缺" };
+          SCPStuff.push(title, rating);
         }
 
         let SCPEmbed = new RichEmbed()
