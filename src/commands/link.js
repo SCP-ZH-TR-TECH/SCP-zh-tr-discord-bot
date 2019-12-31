@@ -15,10 +15,10 @@ module.exports.run = async (bot, message, args) => {
         case 2 :
             break;
         default :
-            return message.channel.send("無法提供網址，用法：&scplink <尾網址> <(繁中則免)/cn/en/int>");
+            return message.channel.send("無法提供網址，用法：&link <尾網址> <(繁中則免)/cn/en/int>");
     }
     let SCPBranch = SCPStuff.pop();
-    if (!(SCPBranch == "zh" || SCPBranch == "en" || SCPBranch == "cn" || SCPBranch == "int")) return message.channel.send("無法提供網址，用法：&scplink <尾網址> <(繁中則免)/cn/en/int>");
+    if (!(SCPBranch == "zh" || SCPBranch == "en" || SCPBranch == "cn" || SCPBranch == "int")) return message.channel.send("無法提供網址，用法：&link <尾網址> <(繁中則免)/cn/en/int>");
 
     switch (SCPBranch) {
         case "zh" :

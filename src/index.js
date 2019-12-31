@@ -13,6 +13,24 @@ bot.login(config.DIS_TOKEN);
 
 let pref = config.CMD_PREFIX;
 
+fs.readdir("./events/", (err, files) => {
+
+    if(err) console.log(err);
+
+    let jsfile = files.filter(f => f.split(".").pop() === "js")
+    if(!(jsfile.length)){
+      console.log("無法找到可用的事件集");
+      return;
+    }
+
+    jsfile.forEach((f, i) =>{
+      let eventfunc = require(`./events/${f}`);
+      let name = f.split(".")[0];
+      console.log(`${f} 事件處理器已載入!`);
+      bot.on(name, (...args) => eventfunc.run(bot, ...args));
+    });
+});
+
 fs.readdir("./commands/", (err, files) => {
 
     if(err) console.log(err);
@@ -28,29 +46,24 @@ fs.readdir("./commands/", (err, files) => {
 
     jsfile.forEach((f, i) =>{
       let props = require(`./commands/${f}`);
-      console.log(`${f} 已載入!`);
+      console.log(`${f} 指令處理器已載入!`);
       bot.commands.set(props.help.name, props);
     });
     admjsfile.forEach((f, i) =>{
       let props = require(`./commands/${f}`);
-      console.log(`${f} 已載入!`);
+      console.log(`${f} 指令處理器已載入!`);
       bot.admcmds.set(props.help.name, props);
     });
     dmjsfile.forEach((f, i) =>{
       let props = require(`./commands/${f}`);
-      console.log(`${f} 已載入!`);
+      console.log(`${f} 指令處理器已載入!`);
       bot.dmcmds.set(props.help.name, props);
     });
 
-  });
-
-bot.on("ready", () => {
-    console.log(`${bot.user.username} 目前正運行在 ${bot.guilds.size} 個伺服器上!`);
-    bot.user.setActivity("SCP 繁中分部", {type: "PLAYING"});
 });
 
 
-bot.on("message", function(msg) {
+bot.on("message", (msg) => {
     if (msg.author.bot && msg.author.id!="268478587651358721") return;
     if (!msg.content.startsWith(pref)) return;
     let msgArray = msg.content.split(" ");
