@@ -1,3 +1,4 @@
+const {RichEmbed} = require("discord.js");
 var MT = require("mersenne-twister");
 var gen = new MT();
 

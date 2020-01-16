@@ -1,3 +1,4 @@
+const {RichEmbed} = require("discord.js");
 var dp = require('./../utils/durparser.js')
 let ReturnEmbed = new RichEmbed()
   .setColor("#660000")
