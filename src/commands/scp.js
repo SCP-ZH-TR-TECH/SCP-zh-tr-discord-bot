@@ -6,8 +6,8 @@ const cheerio = require("cheerio");
 //example : &scp zh-009
 //example : &scp 1000
 
-var SCPStuff = ["Springfield Cargo Protection", "Spencer Cartoon Production", "Suspecting Chaos-unity Punchers", "Special Containment Procedures", "Spicy Crust Pizzeria", "Soap from Corpse Products", "Su'ao Cargo port", "Steam Control Panel", "Socks from Colorado Park", "Sony in Collaboration with Pioneer", "Science Confusion Puberty", "Suffering from Coding Panic", "Sam Cannot Paddle"];
-//              Komica                          Viken                         Sam                                Komica/SCP itself                 Komica                  Komica                       ChA                 ChA                    ChA                         ChA                                   Dr.V                         ChA                            Sam(obviously)
+var SCPStuff = ["Springfield Cargo Protection", "Spencer Cartoon Production", "Suspecting Chaos-unity Punchers", "Special Containment Procedures", "Spicy Crust Pizzeria", "Soap from Corpse Products", "Su'ao Cargo port", "Steam Control Panel", "Socks from Colorado Park", "Sony in Collaboration with Pioneer", "Science Confusion Puberty", "Suffering from Coding Panic", "Sam Cannot Paddle", "Semibreve Cooking Pabulum", "Super Coffin Predator"];
+//              Komica                          Viken                         Sam                                Komica/SCP itself                 Komica                  Komica                       ChA                 ChA                    ChA                         ChA                                   Dr.V                         ChA                            Sam(obviously)        Semibreve(obviously)         Unknown     
 
 module.exports.run = (bot, message, args) => {
     let SCPNum = message.content.split(' ').slice(1);    
