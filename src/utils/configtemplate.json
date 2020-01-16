@@ -3,5 +3,6 @@
   "DIS_TOKEN": "YourDiscordToken",
   "DIS_ADM_ROLE": ["YourAdminRoleID"],
   "DIS_NEWS_CHAN": ["YourDiscordNewsChannel"],
-  "SCP_SITE": "zh"
+  "SCP_SITE": "zh",
+  "GOOGLE_API": "YourGoogleAPIToken"
 }

@@ -10,7 +10,7 @@ const fs = require("fs");
 try {
   let custom = JSON.parse(fs.readFileSync('./utils/devconfig.json', 'utf8'));
 
-  confignames = ["CMD_PREFIX", "DIS_TOKEN", "DIS_ADM_ROLE", "DIS_NEWS_CHAN", "SCP_SITE"];
+  confignames = ["CMD_PREFIX", "DIS_TOKEN", "DIS_ADM_ROLE", "DIS_NEWS_CHAN", "SCP_SITE", "GOOGLE_API"];
   for (var name of confignames) { if (custom[name] !== undefined && custom[name]) {config[name] = custom[name]} };
 } catch (e) {
   if (e.code==`ENOENT`) {
@@ -22,6 +22,7 @@ if (process.env.SZB_FORCE_ENV === undefined || process.env.SZB_FORCE_ENV.toLower
   if (process.env.SZB_CMD_PREFIX!==undefined && process.env.SZB_CMD_PREFIX) { config.CMD_PREFIX = process.env.SZB_CMD_PREFIX };
   if (process.env.SZB_DIS_TOKEN !==undefined && process.env.SZB_DIS_TOKEN ) { config.DIS_TOKEN  = process.env.SZB_DIS_TOKEN  };
   if (process.env.SZB_SCP_SITE  !==undefined && process.env.SZB_SCP_SITE  ) { config.SCP_SITE   = process.env.SZB_SCP_SITE   };
+  if (process.env.SZB_GOOGLE_API  !==undefined && process.env.SZB_GOOGLE_API  ) { config.GOOGLE_API   = process.env.SZB_GOOGLE_API   };
   if (process.env.SZB_DIS_ADM_ROLE !==undefined && process.env.SZB_DIS_ADM_ROLE ) {
     if (process.env.SZB_DIS_ADM_ROLE.startsWith("[")) {
       config.DIS_ADM_ROLE = JSON.parse(process.env.SZB_DIS_ADM_ROLE)

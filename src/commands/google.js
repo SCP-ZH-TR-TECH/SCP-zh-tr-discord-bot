@@ -1,7 +1,7 @@
 const {RichEmbed} = require("discord.js");
-const Google = require('relevant-google')
-const config = require('./../utils/configLoader.js')
-const google = new Google(config.GOOGLE_API)
+const Google = require('relevant-google');
+const {GOOGLE_API} = require('./../utils/configLoader.js');
+const google = new Google(GOOGLE_API);
 
 module.exports.run = async(bot, message, args) => {
     if(!args.length){

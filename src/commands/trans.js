@@ -60,7 +60,8 @@ module.exports.run = async(bot, message, args) => {
             .setFooter(`不知道想要的語言的代碼？試試&trans help吧！`, "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
         message.channel.send(TransEmbed);
     }, err => {
-        message.channel.send("未知錯誤")
+      console.log(err);
+      message.channel.send("未知錯誤")
     })
 }
 
