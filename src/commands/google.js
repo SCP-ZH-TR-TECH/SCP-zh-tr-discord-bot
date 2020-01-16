@@ -1,5 +1,5 @@
 const {RichEmbed} = require("discord.js");
-const Google = require('relevant-google');
+const Google = require('relevant-google')
 const {GOOGLE_API} = require('./../utils/configLoader.js');
 const google = new Google(GOOGLE_API);
 
@@ -27,7 +27,6 @@ module.exports.run = async(bot, message, args) => {
             .setTimestamp()
             .setFooter("先行公開指令。", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
         message.channel.send(SearchEmbed);
-        console.log(res)
     }))
 }
 
