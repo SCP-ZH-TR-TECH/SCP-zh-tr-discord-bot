@@ -1,10 +1,10 @@
 var config = {
   "CMD_PREFIX": "&",
-  "DIS_TOKEN": "NDk1NjI1MzE5MjU3MDc5ODM4.XggTnQ.261PSAGSUm1Si0LNycl9PBYYq4c",
+  "DIS_TOKEN": "",
   "DIS_ADM_ROLE": [""],
   "DIS_NEWS_CHAN": [],
   "SCP_SITE": "zh",
-  "GOOGLE_API": "AIzaSyBxrOme4CLaRidsGrs4PorY2ZYA7cd1s_A"
+  "GOOGLE_API": ""
 }
 const fs = require("fs");
 try {

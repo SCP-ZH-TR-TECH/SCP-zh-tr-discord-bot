@@ -3,7 +3,7 @@ const {RichEmbed} = require("discord.js");
 module.exports.run = async (bot, message, args) => {
     let botembed = new RichEmbed()
     .setTitle("繁中分部機器人指令一覽")
-    .setDescription("版本：1.1.0")
+    .setDescription("版本：1.2.0")
     .setColor("#660000")
     .addField("直連", "&link <尾網址> <(繁中則免)/cn/en/int>")
     .addField("站內搜尋", "&search <字串> <(繁中則免)/cn/en/int>")
