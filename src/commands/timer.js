@@ -1,4 +1,10 @@
 var dp = require('./../utils/durparser.js')
+let ReturnEmbed = new RichEmbed()
+  .setColor("#660000")
+  .setTitle("用法：")
+  .setDescription("&timer <XX:XX:XX.XXX/XhXmXs> (<自訂提醒訊息>)")
+  .setTimestamp()
+  .setFooter("不穩定指令，若有問題請回報。", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png");
 
 module.exports.run = (bot, message, args) => {
   var t = args[0].toLowerCase();
@@ -9,11 +15,11 @@ module.exports.run = (bot, message, args) => {
     } else if (t.includes("h")||t.includes("m")||t.includes("s")) {
       var time = new dp(t, "initial");
     } else {
-      return message.channel.send(`格式不正確，請重新輸入。`);
+      return message.channel.send(ReturnEmbed)
     }
   } catch (e) {
     if (e.code = `INVALID_TIME_REP`) {
-      return message.channel.send(`格式不正確，請重新輸入。`);
+      return message.channel.send(ReturnEmbed)
     } else throw e;
   }
   t = time.toMS();

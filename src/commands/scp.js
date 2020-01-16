@@ -6,18 +6,24 @@ const cheerio = require("cheerio");
 //example : &scp zh-009
 //example : &scp 1000
 
-var SCPStuff = ["Springfield Cargo Protection", "Spencer Cartoon Production", "Suspecting Chaos-unity Punchers", "Special Containment Procedures", "Spicy Crust Pizzeria", "Soap from Corpse Pruducts", "Su'ao Cargo port", "Steam Control Panel", "Socks from Colorado Park", "Sony in Collaboration with Pioneer", "Science Confusion Puberty", "Suffering from Coding Panic", "Sam Cannot Paddle"];
+var SCPStuff = ["Springfield Cargo Protection", "Spencer Cartoon Production", "Suspecting Chaos-unity Punchers", "Special Containment Procedures", "Spicy Crust Pizzeria", "Soap from Corpse Products", "Su'ao Cargo port", "Steam Control Panel", "Socks from Colorado Park", "Sony in Collaboration with Pioneer", "Science Confusion Puberty", "Suffering from Coding Panic", "Sam Cannot Paddle"];
 //              Komica                          Viken                         Sam                                Komica/SCP itself                 Komica                  Komica                       ChA                 ChA                    ChA                         ChA                                   Dr.V                         ChA                            Sam(obviously)
 
 module.exports.run = (bot, message, args) => {
     let SCPNum = message.content.split(' ').slice(1);    
-    if (SCPNum.length > 2) return message.channel.send("無法提供網址，用法：&scp <SCP編號>");
+    if (SCPNum.length > 2) {
+      let ReturnEmbed = new RichEmbed()
+        .setColor("#660000")
+        .setTitle("用法：")
+        .setDescription("&scp <SCP編號>")
+        .setTimestamp()
+        .setFooter("不穩定指令，若有問題請回報。", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
+      return message.channel.send(ReturnEmbed)
+    }
     if (SCPNum.length == 0) return message.channel.send(SCPStuff[Math.floor((Math.random() * (SCPStuff.length+1)))])
     let SCPitem = []; //Title / Author / Author Avatar / Rating / Date
     let baseurl = "http://scp-zh-tr.wikidot.com/new-stuff-workbanch/fullname/scp-" + SCPNum
     request(baseurl, (err, res, body) => {
-      if (err) return message.author.send("用法：&scp <SCP編號>");
-
       let $ = cheerio.load(body);
       let SCPdir = $('.list-pages-item');
 

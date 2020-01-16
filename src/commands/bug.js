@@ -1,11 +1,16 @@
 const {RichEmbed} = require("discord.js");
+let ReturnEmbed = new RichEmbed()
+    .setColor("#660000")
+    .setTitle("用法：")
+    .setDescription("&bug <問題指令> <原因(中英文皆可)>")
+    .setTimestamp()
+    .setFooter("不穩定指令，若有問題請回報。", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
 
 module.exports.run = async (bot, message, args) => {
-    let Stuff = message.content.split(' ').slice(1);
-    if (Stuff.length == 0) return message.author.send("用法：&bug <問題指令> <原因(中英文皆可)>")
-    let command = Stuff.shift();
-    let reason = Stuff.join(" ");
-    if (!reason) return message.author.send("請充實問題指令敘述")
+    if (args.length == 0) return message.channel.send(ReturnEmbed)
+    let command = args.shift();
+    let reason = args.join(" ");
+    if (!reason) return message.channel.send(ReturnEmbed)
 
     let bugEmbed = new RichEmbed()
     .setDescription("BUG回報")

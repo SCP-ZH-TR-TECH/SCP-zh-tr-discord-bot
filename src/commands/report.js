@@ -2,7 +2,15 @@ const {RichEmbed} = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
     let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-    if(!rUser) return message.author.send("無法舉報給管理員，原因：未能找到該使用者。");
+    if(!rUser) {
+        let ReturnEmbed = new RichEmbed()
+            .setColor("#660000")
+            .setTitle("用法：")
+            .setDescription("&report <@使用者> <原因>")
+            .setTimestamp()
+            .setFooter("不穩定指令，若有問題請回報。", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
+        return message.channel.send(ReturnEmbed)
+    }
     let rreason = args.join(" ").slice(22);
 
     let reportEmbed = new RichEmbed()

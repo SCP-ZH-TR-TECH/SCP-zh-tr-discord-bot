@@ -11,7 +11,13 @@ module.exports.run = (bot, message, args) => {
       }
     }
     if (isNaN(num)||isNaN(side)) {
-      return message.channel.send(`指令格式錯誤。請重新輸入。\n格式為：XdY，X為骰子數目，Y為骰子面數。`)
+      let ReturnEmbed = new RichEmbed()
+        .setColor("#660000")
+        .setTitle("用法：")
+        .setDescription("&rd XdY", "X為骰子數目，Y為骰子面數。")
+        .setTimestamp()
+        .setFooter("不穩定指令，若有問題請回報。", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
+      return message.channel.send(ReturnEmbed)
     }
     var sum = 0, all = [], result="";
     for (var i = 0; i < num; i++) {

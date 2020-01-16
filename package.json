@@ -28,9 +28,11 @@
     "dotenv": "^8.2.0",
     "enmap": "^5.2.3",
     "express": "^4.17.1",
+    "google-translate-node": "^1.0.1",
     "mersenne-twister": "^1.1.0",
     "moment": "^2.24.0",
-    "moment-duration-format": "^2.2.2",
+    "moment-duration-format": "^2.3.2",
+    "relevant-google": "^1.0.0",
     "request": "^2.88.0",
     "requset": "0.0.1-security",
     "scpper2.js": "^4.0.2"

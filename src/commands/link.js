@@ -15,7 +15,13 @@ module.exports.run = async (bot, message, args) => {
         case 2 :
             break;
         default :
-            return message.channel.send("無法提供網址，用法：&link <尾網址> <(繁中則免)/cn/en/int>");
+            let ReturnEmbed = new RichEmbed()
+                .setColor("#660000")
+                .setTitle("用法：")
+                .setDescription("&link <尾網址> <(繁中則免)/cn/en/int>")
+                .setTimestamp()
+                .setFooter("不穩定指令，若有問題請回報。", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
+            return message.channel.send(ReturnEmbed)
     }
     let SCPBranch = SCPStuff.pop();
     if (!(SCPBranch == "zh" || SCPBranch == "en" || SCPBranch == "cn" || SCPBranch == "int")) return message.channel.send("無法提供網址，用法：&link <尾網址> <(繁中則免)/cn/en/int>");
@@ -42,8 +48,6 @@ module.exports.run = async (bot, message, args) => {
     let SCPLink = SCPStuff.shift() + SCPStuff.shift();
 
     request(SCPLink, (err, res, body) => {
-        if (err) return message.author.send("用法：&link <尾網址> <(繁中則免)/cn/us/int>");
-
         let $ = cheerio.load(body);
 
         if (!$('#page-title').length) SCPStuff.push("不存在之頁面", "從缺")
