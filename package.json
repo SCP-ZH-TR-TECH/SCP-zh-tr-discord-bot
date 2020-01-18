@@ -34,6 +34,7 @@
     "moment-duration-format": "^2.3.2",
     "relevant-google": "^1.0.0",
     "request": "^2.88.0",
+    "request-promise": "^4.2.5",
     "requset": "0.0.1-security",
     "scpper2.js": "^4.0.2"
   }

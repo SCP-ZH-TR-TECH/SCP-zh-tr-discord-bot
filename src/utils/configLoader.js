@@ -3,6 +3,7 @@ var config = {
   "DIS_TOKEN": "",
   "DIS_ADM_ROLE": [""],
   "DIS_NEWS_CHAN": [],
+  "DIS_ARTI_CHAN": [],
   "SCP_SITE": "zh",
   "GOOGLE_API": ""
 }
@@ -10,7 +11,7 @@ const fs = require("fs");
 try {
   let custom = JSON.parse(fs.readFileSync('./utils/devconfig.json', 'utf8'));
 
-  confignames = ["CMD_PREFIX", "DIS_TOKEN", "DIS_ADM_ROLE", "DIS_NEWS_CHAN", "SCP_SITE", "GOOGLE_API"];
+  confignames = ["CMD_PREFIX", "DIS_TOKEN", "DIS_ADM_ROLE", "DIS_NEWS_CHAN", "DIS_ARTI_CHAN", "SCP_SITE", "GOOGLE_API"];
   for (var name of confignames) { if (custom[name] !== undefined && custom[name]) {config[name] = custom[name]} };
 } catch (e) {
   if (e.code==`ENOENT`) {
@@ -32,6 +33,11 @@ if (process.env.SZB_FORCE_ENV === undefined || process.env.SZB_FORCE_ENV.toLower
     if (process.env.SZB_DIS_NEWS_CHAN.startsWith("[")) {
       config.DIS_NEWS_CHAN = JSON.parse(process.env.SZB_DIS_NEWS_CHAN)
     } else { config.DIS_NEWS_CHAN = process.env.SZB_DIS_NEWS_CHAN }
+  };
+  if (process.env.SZB_DIS_ARTI_CHAN !==undefined && process.env.SZB_DIS_ARTI_CHAN ) {
+    if (process.env.SZB_DIS_ARTI_CHAN.startsWith("[")) {
+      config.DIS_ARTI_CHAN = JSON.parse(process.env.SZB_DIS_ARTI_CHAN)
+    } else { config.DIS_ARTI_CHAN = process.env.SZB_DIS_ARTI_CHAN }
   };
 }
 
