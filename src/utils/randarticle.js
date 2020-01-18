@@ -75,7 +75,7 @@ module.exports = (bot) => {
   setTimeout(scp.sendRec,10000)
 
   scp.id = {
-    rec: setInterval(scp.sendRec, 3600000),
+    rec: setInterval(scp.sendRec, 18000000),
     list: setInterval(scp.getRandList, 300000)
   }
 }
