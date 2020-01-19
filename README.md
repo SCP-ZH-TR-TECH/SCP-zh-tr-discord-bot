@@ -12,7 +12,9 @@ SCP-ZH-TR Discord Bot
 | DIS_TOKEN | Required | <code>String</code> | empty string | The token for logging into your bot account |
 | DIS_ADM_ROLE | Optional | <code>Array</code> of <code>String</code> | empty array | The role id(s) for using the bot's admin commands |
 | DIS_NEWS_CHAN | Optional | <code>Array</code> of <code>String</code> | empty array | The channel id(s) for posting Wikidot new pages of the specified site to. |
+| DIS_ARTI_CHAN | Optional | <code>Array</code> of <code>String</code> | empty array | The channel id(s) for regularly posting Wikidot articles of the specified site to. |
 | SCP_SITE | Optional | <code>String</code> | <code>zh</code> | The site for checking site activity for verification, should be site initial (branch tag). |
+| GOOGLE_API | Optional | <code>String</code> | empty string | The api token for searching on google. |
 
 
 \ ゜o゜)ノ
