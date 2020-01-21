@@ -22,7 +22,7 @@ module.exports = (bot) => {
           var $ = cheerio.load(body);
           if (!$('#page-title').length) return null;
           else {
-            var rating = $('.prw54353').contents().first().text().trim();
+            var rating = $('#prw54355').contents().first().text().trim();
             if (!rating||rating==undefined) { rating="0" };
             rating = parseInt(rating);
             if (rating>=0&&rating<=30) {
@@ -39,7 +39,7 @@ module.exports = (bot) => {
       if (!$('#page-title').length) return null;
       else {
         var title = $('#page-title').contents().first().text().trim();
-        var rating = $('.prw54353').contents().first().text().trim();
+        var rating = $('#prw54355').contents().first().text().trim();
         if (title.includes('\n')) { title = title.split('\n').join().trim(); }
         var pno = Math.floor(Math.random()*($('#page-content').children('p').length))
         var extract = $($('#page-content').children('p').get(pno)).text();

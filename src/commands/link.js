@@ -53,7 +53,7 @@ module.exports.run = async (bot, message, args) => {
         if (!$('#page-title').length) SCPStuff.push("不存在之頁面", "從缺")
         else {
           var title = $('#page-title').contents().first().text().trim();
-          var rating = $('.prw54353').contents().first().text().trim();
+          var rating = $('#prw54355').contents().first().text().trim();
           if (title.includes('\n')) { title = title.split('\n').join().trim(); }
           if (!rating||rating==undefined) { rating="從缺" };
           SCPStuff.push(title, rating);
