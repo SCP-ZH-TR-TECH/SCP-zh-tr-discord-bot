@@ -1,5 +1,6 @@
 const fs = require("fs")
 const chanMap = JSON.parse(fs.readFileSync('./utils/chanMap.json', 'utf8'));
+const roleMap = JSON.parse(fs.readFileSync('./utils/roleMap.json', 'utf8'));
 
 class Parser {
   constructor(input) {
@@ -43,4 +44,5 @@ class Parser {
   }
 }
 
-module.exports = Parser;
+module.exports.parser = Parser;
+module.exports.roleMap = roleMap;

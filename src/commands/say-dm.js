@@ -1,4 +1,4 @@
-const parser = require("./../utils/parser.js")
+const {parser} = require("./../utils/parser.js")
 
 module.exports.run = (bot, message, args) => {
   var parse = new parser(args[0]);
