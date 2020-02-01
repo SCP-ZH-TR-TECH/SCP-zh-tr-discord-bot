@@ -41,14 +41,17 @@ module.exports = (bot) => {
         var title = $('#page-title').contents().first().text().trim();
         var rating = $('#prw54355').contents().first().text().trim();
         if (title.includes('\n')) { title = title.split('\n').join().trim(); }
-        var pno = Math.floor(Math.random()*($('#page-content').children('p').length))
-        var extract = $($('#page-content').children('p').get(pno)).text();
+        var extract = "項目編號";
+        while (extract.startsWith("項目編號")||extract.startsWith("威脅等級")) {
+          var pno = Math.floor(Math.random()*($('#page-content').children('p').length))
+          extract = $($('#page-content').children('p').get(pno)).text();
+        }
         var author = scp.authorlist.shift()
         randomEmbed.setColor("#660000")
         .setTitle("SCP基金會繁中分部內部資料庫")
         .setDescription("目前連接至繁中分部")
         .setThumbnail("https://i.imgur.com/xKRFpMu.png")
-        .addField("標題", "[" + title + "](" + page + ")", true)
+        .addField("標題", `[${title}](${page})`, true)
         .setAuthor(author[1], author[0])
         .addField("現時評分", rating, true)
         .addField("摘錄", extract, true)
