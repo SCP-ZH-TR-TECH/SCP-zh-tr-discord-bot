@@ -3,7 +3,7 @@ var MT = require("mersenne-twister");
 var gen = new MT();
 
 module.exports.run = (bot, message, args) => {
-    var roll = args[0].toLowerCase().split("d");
+    var roll = args.shift().toLowerCase().split("d");
     if (roll[0]&&roll[0]!=undefined) {
       if (roll[1]&&roll[1]!=undefined) {
         var num = parseInt(roll[0]), side = parseInt(roll[1]);
@@ -34,7 +34,9 @@ module.exports.run = (bot, message, args) => {
     } else {
       result = `結果為 ${all.join(", ")}\n總和為 ${sum}`
     }
-    message.channel.send(`<@${message.author.id}>, ${num}d${side} 骰子: ${result}`);
+    var context = args.join(" ").split("\n")[0];
+    if (context&&context!=undefined) { context= ` (${context})` } else { context="" }
+    message.channel.send(`<@${message.author.id}>, ${num}d${side} 骰子${context}: ${result}`);
 }
 
 module.exports.help = {
