@@ -33,7 +33,7 @@ module.exports.run = async (bot, message, args) => {
             break;
         case "cn" :
             SCPStuff.unshift("http://scp-wiki-cn.wikidot.com/");
-            SCPStuff.push("外部", "簡中分部");
+            SCPStuff.push("外部", "中文分部");
             break;
         case "en" :
             SCPStuff.unshift("http://scp-wiki.wikidot.com/");
