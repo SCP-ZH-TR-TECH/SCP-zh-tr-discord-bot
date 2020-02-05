@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
     .addField("直連", "&link <尾網址> <(繁中則免)/cn/en/int>")
     .addField("站內搜尋", "&search <字串> <(繁中則免)/cn/en/int>")
     .addField("最新作品", "&news")
-    .addField("骰子", "&rd XdY")
+    .addField("骰子", "&rd XdY±Z")
     .addField("舉報", "&report <@username> <理由>")
     .addField("機器人簡介", "&botinfo")
     .addField("SCP快速連結", "&scp <(分部)-項目編號>")
