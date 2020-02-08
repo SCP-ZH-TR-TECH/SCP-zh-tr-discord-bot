@@ -76,5 +76,18 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.help ={
-    name: "link"
+    name: "link",
+    embed: {
+      description: `提供wikidot頁面連接與資訊。\n用法: &link <頁面UNIX名> [<分部>]`,
+      fields: [
+        {
+          name: `目前可用分部`,
+          description: `en, int, cn, zh`
+        },
+        {
+          name: `範例: &link scp-cn-1000 int`,
+          value: `http://scp-int.wikidot.com/scp-cn-1000 鏈接以及現時評分將被提供。`
+        }
+      ]
+    }
 }

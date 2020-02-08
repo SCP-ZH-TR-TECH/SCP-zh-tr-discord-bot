@@ -41,5 +41,8 @@ exports.run = async(bot, message, args) => {
 }
 
 module.exports.help ={
-    name: "random"
+    name: "random",
+    embed: {
+      description: "展示wikidot上繁中分部隨機頁面。"
+    }
 }

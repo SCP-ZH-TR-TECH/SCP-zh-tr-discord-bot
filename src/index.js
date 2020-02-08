@@ -36,7 +36,7 @@ fs.readdir("./commands/", (err, files) => {
     if(err) console.log(err);
 
     let jsfile = files.filter(f => f.split(".").pop() === "js"
-      && f.split("-").pop()!="disabled.js" && f.split("-").pop()!="admin.js")
+      && !["disabled.js", "admin.js"].includes(f.split("-").pop()))
     let admjsfile = files.filter(f => f.split(".").pop() === "js" && f.split("-").pop()=="admin.js")
     let dmjsfile = files.filter(f => f.split(".").pop() === "js" && f.split("-").pop()=="dm.js")
     if(!(jsfile.length||admjsfile.length||dmjsfile.length)){

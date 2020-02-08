@@ -7,10 +7,10 @@ const cheerio = require("cheerio");
 //example : &scp 1000
 
 var SCPStuff = ["Springfield Cargo Protection", "Spencer Cartoon Production", "Suspecting Chaos-unity Punchers", "Special Containment Procedures", "Spicy Crust Pizzeria", "Soap from Corpse Products", "Su'ao Cargo port", "Steam Control Panel", "Socks from Colorado Park", "Sony in Collaboration with Pioneer", "Science Confusion Puberty", "Suffering from Coding Panic", "Sam Cannot Paddle", "Semibreve Cooking Pabulum", "Super Coffin Predator"];
-//              Komica                          Viken                         Sam                                Komica/SCP itself                 Komica                  Komica                       ChA                 ChA                    ChA                         ChA                                   Dr.V                         ChA                            Sam(obviously)        Semibreve(obviously)         Unknown     
+//              Komica                          Viken                         Sam                                Komica/SCP itself                 Komica                  Komica                       ChA                 ChA                    ChA                         ChA                                   Dr.V                         ChA                            Sam(obviously)        Semibreve(obviously)         Unknown
 
 module.exports.run = (bot, message, args) => {
-    let SCPNum = message.content.split(' ').slice(1);    
+    let SCPNum = message.content.split(' ').slice(1);
     if (SCPNum.length > 2) {
       let ReturnEmbed = new RichEmbed()
         .setColor("#660000")
@@ -54,5 +54,14 @@ module.exports.run = (bot, message, args) => {
 }
 
 module.exports.help = {
-  name:"scp"
+  name:"scp",
+  embed: {
+    description: "隨機回應縮寫為SCP的詞語，或提供項目鏈接。\n用法: &scp 或 &scp <項目編號>",
+    fields: [
+      {
+        name: `範例: &scp zh-002`,
+        value: `返回SCP-ZH-002頁面鏈接以及現時評分。`
+      }
+    ]
+  }
 }

@@ -29,5 +29,8 @@ exports.run = async(bot, message, args) => {
 }
 
 module.exports.help ={
-    name: "emoji"
+    name: "emoji",
+    embed: {
+      description: `展示表情符號大圖。\n用法: &emoji <表情符號>`
+    }
 }

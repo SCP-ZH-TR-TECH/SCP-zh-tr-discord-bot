@@ -14,5 +14,8 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.help = {
-  name:"botinfo"
+  name:"botinfo",
+  embed: {
+    description: `展示機器人資訊。`
+  }
 }

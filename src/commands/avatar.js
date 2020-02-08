@@ -10,9 +10,12 @@ exports.run = async(bot, message, args) => {
     .setColor("#660000")
     .setImage(User.avatarURL);
     message.channel.send(avatarEmbed);
-    
+
 }
 
 module.exports.help ={
-    name: "avatar"
+    name: "avatar",
+    embed: {
+      description: `展示頭像大圖。\n用法: &avatar [@用戶]\n若未指定用戶，則默認為指令使用者。`
+    }
 }

@@ -47,5 +47,8 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.help ={
-    name: "news"
+    name: "news",
+    embed: {
+      description: "展示wikidot上繁中分部最新創建頁面。"
+    }
 }

@@ -16,7 +16,10 @@ let idMapFW = idmDB.prepare(`SELECT DCID FROM idMap WHERE WDID = ?`);
 const mention = /<.{1,2}[0-9]+>/;
 
 module.exports.help = {
-  name:"idcr"
+  name:"idcr",
+  embed: {
+    description: `進行wikidot id與Discord用戶對應關係操作。用法：\n&idcr <操作> <用戶> [<用戶>]`
+  }
 }
 
 module.exports.run = async (bot, message, args) => {

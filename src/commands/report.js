@@ -31,5 +31,8 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.help ={
-    name: "report"
+    name: "report",
+    embed: {
+      description: "向管理員舉報本伺服成員。\n用法: &report <@使用者> <原因>"
+    }
 }

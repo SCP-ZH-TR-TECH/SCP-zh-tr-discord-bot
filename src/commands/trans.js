@@ -15,16 +15,16 @@ module.exports.run = async(bot, message, args) => {
         let ReturnEmbed = new RichEmbed()
             .setColor("#660000")
             .setTitle("用法：")
-            .setDescription("&trans <字串> <語言代碼>")
+            .setDescription("&trans <需翻譯內容> <目標語言代號>")
             .setTimestamp()
-            .setFooter("不知道想要的語言的代碼？試試&trans help吧！", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
+            .setFooter("不知道想要的語言的代號？試試&trans help吧！", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
         return message.channel.send(ReturnEmbed)
     }
     else {
         if (args[0] == "help" && args.length == 1) {
             let ReturnEmbed = new RichEmbed()
                 .setTitle("語言代碼一覽")
-                .setDescription("還是不知道想要的語言的代碼？去看看[這裡](https://cloud.google.com/translate/docs/languages?hl=zh-tw)吧！")
+                .setDescription("還是不知道想要的語言的代號？去看看[這裡](https://cloud.google.com/translate/docs/languages?hl=zh-tw)吧！")
                 .setColor("#660000")
                 .setTimestamp()
                 .setFooter("Powered by Google Cloud", "http://chaos-module.wdfiles.com/local--files/start/google-icon-for-bot")
@@ -41,7 +41,7 @@ module.exports.run = async(bot, message, args) => {
         let ReturnEmbed = new RichEmbed()
             .setColor("#660000")
             .setTitle("用法：")
-            .setDescription("&trans <字串> <語言代碼>")
+            .setDescription("&trans <需翻譯內容> <目標語言代號>")
             .setTimestamp()
             .setFooter("不知道想要的語言的代碼？試試&trans help吧！", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
         return message.channel.send(ReturnEmbed);
@@ -55,7 +55,7 @@ module.exports.run = async(bot, message, args) => {
                 .addField(`目標語言` ,`${lang}`)
                 .addField(`結果`, `${res}`)
                 .setTimestamp()
-                .setFooter(`不知道想要的語言的代碼？試試&trans help吧！`, "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
+                .setFooter(`不知道想要的語言的代號？試試&trans help吧！`, "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
             message.channel.send(TransEmbed);
         }, err => {
           console.log(err);
@@ -64,6 +64,9 @@ module.exports.run = async(bot, message, args) => {
     }
 }
 
-module.exports.help ={
-    name: "trans"
+module.exports.help = {
+    name: "trans",
+    embed: {
+      description: "使用Google翻譯。\n用法: &trans <需翻譯內容> <目標語言代號>\n使用 &trans help 可以瀏覽可用語言及對應代號。"
+    }
 }

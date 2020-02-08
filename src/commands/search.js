@@ -21,7 +21,7 @@ module.exports.run = async (bot, message, args) => {
                 .setFooter("不穩定指令，若有問題請回報。", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
             return message.channel.send(ReturnEmbed)
     }
-    let SCPBranch = SCPStuff.pop(); 
+    let SCPBranch = SCPStuff.pop();
     let SCPSearch = SCPStuff.pop();
 
     if (!(SCPBranch == "zh" || SCPBranch == "en" || SCPBranch == "cn" || SCPBranch == "int")) return message.channel.send("無法提供網址，用法：&search <字串> <(繁中則免)/cn/us/int>");
@@ -87,6 +87,9 @@ module.exports.run = async (bot, message, args) => {
 
 }
 
-module.exports.help ={
-    name: "search"
+module.exports.help = {
+    name: "search",
+    embed: {
+      description: "於wikidot上搜尋包含目標字串的頁面，返回最多5個結果。\n用法: &search <目標字串>"
+    }
 }

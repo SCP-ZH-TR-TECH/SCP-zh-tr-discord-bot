@@ -31,5 +31,8 @@ module.exports.run = async(bot, message, args) => {
 }
 
 module.exports.help ={
-    name: "google"
+    name: "google",
+    embed: {
+      description: `進行Google搜尋。\n用法: &google <字串>`
+    }
 }
