@@ -3,46 +3,68 @@
     "__info": {
       "chan":"645229994657710102",
       "msg": "670746667217190984",
-      "content": ""
+      "content": "在此消息下回覆表情以取得身分組。"
     },
     "write": {
       "react": "🖊️",
-      "role": "597315799631527956"
+      "reactname": "",
+      "role": "597315799631527956",
+      "rolename": "崇文館創作組"
     },
     "draw": {
       "react": "🖌️",
-      "role": "597316105610199050"
+      "reactname": "",
+      "role": "597316105610199050",
+      "rolename": "造辦處繪圖組"
     },
     "translate": {
       "react": "🖋️",
-      "role": "597316309889581056"
+      "reactname": "",
+      "role": "597316309889581056",
+      "rolename": "同文館翻譯組"
     },
     "scpchat": {
       "react": "🗣️",
-      "role": "644206864564748298"
+      "reactname": "",
+      "role": "644206864564748298",
+      "rolename": "SCP 聊天組"
     },
     "disablecreative": {
       "react": "🔏",
-      "role": "670663996625387551"
+      "reactname": "",
+      "role": "670663996625387551",
+      "rolename": "隱藏創作輔助"
     },
     "disablerock": {
       "react": "🎸",
-      "role": "670664151017848855"
+      "reactname": "",
+      "role": "670664151017848855",
+      "rolename": "隱藏搖滾區"
     },
     "scp": {
       "react": "⚪",
-      "role": "670664069711265802"
+      "reactname": "",
+      "role": "670664069711265802",
+      "rolename": "SCP專注"
     }
   },
   "int-rules": {
     "__info": {
       "chan": "626440362268950528",
       "msg": "670759456115654657",
-      "content": ""
+      "content": "React to give yourself a role."
     },
     "int": {
       "react": "647786495167430736",
-      "role": "647700834054045696"
+      "reactname": "icon_int",
+      "role": "647700834054045696",
+      "rolename": "International"
+    },
+    "unlockannounce": {
+      "react": "🔓",
+      "reactname": "",
+      "role": "678128516004446228",
+      "rolename": "Unlock Announcements"
     }
   },
   "debug": {
@@ -53,7 +75,8 @@
     },
     "debugrole": {
       "react": "",
-      "role": "670749018711654422"
+      "role": "670749018711654422",
+      "rolename": "debug"
     }
   }
 }
