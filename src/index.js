@@ -37,8 +37,8 @@ fs.readdir("./commands/", (err, files) => {
 
     let jsfile = files.filter(f => f.split(".").pop() === "js"
       && !["disabled.js", "admin.js"].includes(f.split("-").pop()))
-    let admjsfile = files.filter(f => f.split(".").pop() === "js" && f.split("-").pop()=="admin.js")
-    let dmjsfile = files.filter(f => f.split(".").pop() === "js" && f.split("-").pop()=="dm.js")
+    let admjsfile = files.filter(f => f.split("-").pop()=="admin.js")
+    let dmjsfile = files.filter(f => f.split("-").pop()=="dm.js")
     if(!(jsfile.length||admjsfile.length||dmjsfile.length)){
       console.log("無法找到可用的指令集");
       return;
