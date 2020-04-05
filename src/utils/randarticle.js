@@ -7,7 +7,7 @@ const cheerio = require("cheerio");
 module.exports = (bot) => {
   var scp = {
     getRandList: function() {
-      request(`http://scp-zh-tr.wikidot.com/random-workbanch/offset/${Math.floor(Math.random() * Math.floor(500))}`, (err, res, body) => {
+      request(`http://scp-zh-tr.wikidot.com/old-stuff-workbanch/offset/${Math.floor(Math.random() * Math.floor(500))}`, (err, res, body) => {
           let $ = cheerio.load(body);
           let SCPdir = $('.list-pages-item');
 
