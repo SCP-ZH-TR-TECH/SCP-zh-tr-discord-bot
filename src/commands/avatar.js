@@ -1,5 +1,6 @@
 const {RichEmbed} = require("discord.js");
 
+//TODO no tagging to get other's avatar
 exports.run = async(bot, message, args) => {
     let User = message.mentions.users.first() || message.author;
     const avatarEmbed = new RichEmbed()
