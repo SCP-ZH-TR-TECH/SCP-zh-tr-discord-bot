@@ -81,4 +81,6 @@ module.exports = (bot) => {
     rec: setInterval(scp.sendRec, 18000000),
     list: setInterval(scp.getRandList, 300000)
   }
+
+  bot.scp = scp
 }
