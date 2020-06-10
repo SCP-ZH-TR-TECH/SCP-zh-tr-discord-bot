@@ -1,4 +1,4 @@
-const {RichEmbed} = require("discord.js");
+const {MessageEmbed} = require("discord.js");
 const request = require("request");
 const rp = require("request-promise");
 const cheerio = require("cheerio");
@@ -34,7 +34,7 @@ module.exports = (bot) => {
       })
     },
     getRecEmbed: async function(page) {
-      let randomEmbed = new RichEmbed()
+      let randomEmbed = new MessageEmbed()
       var $ = await rp({ uri:page, transform: function (body) { return cheerio.load(body); }})
       if (!$('#page-title').length) return null;
       else {
@@ -65,7 +65,7 @@ module.exports = (bot) => {
       var hr = (d.getUTCHours()+8)%24;
       if (hr<1||hr>=9) {
         var msg = await scp.getRecEmbed(scp.pagelist.shift());
-        for (chan of bot.__config.DIS_ARTI_CHAN) { bot.channels.get(chan).send(msg) }
+        for (chan of bot.__config.DIS_ARTI_CHAN) { bot.channels.cache.get(chan).send(msg) }
       }
     },
     pagelist: [],

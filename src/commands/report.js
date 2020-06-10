@@ -1,9 +1,9 @@
-const {RichEmbed} = require("discord.js");
+const {MessageEmbed} = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
-    let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+    let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[0]));
     if(!rUser) {
-        let ReturnEmbed = new RichEmbed()
+        let ReturnEmbed = new MessageEmbed()
             .setColor("#660000")
             .setTitle("用法：")
             .setDescription("&report <@使用者> <原因>")
@@ -13,9 +13,9 @@ module.exports.run = async (bot, message, args) => {
     }
     let rreason = args.join(" ").slice(22);
 
-    let reportEmbed = new RichEmbed()
+    let reportEmbed = new MessageEmbed()
     .setDescription("舉報")
-    .setAuthor(message.author.username, message.author.avatarURL)
+    .setAuthor(message.author.username, message.author.avatarURL())
     .setColor("#660000")
     .addField("被舉報成員", `${rUser} 其成員ID: ${rUser.id}`)
     .addField("舉報成員", `${message.author} 其成員ID: ${message.author.id}`)
@@ -26,7 +26,7 @@ module.exports.run = async (bot, message, args) => {
     .setTimestamp()
 
     message.delete().catch(O_o=>{});
-    bot.channels.get(`657899905645543434`).send(reportEmbed)
+    bot.channels.cache.get(`657899905645543434`).send(reportEmbed)
 
 }
 

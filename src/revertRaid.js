@@ -6,9 +6,9 @@ bot.__config = config;
 bot.login(config.DIS_TOKEN);
 
 setTimeout(()=>{
-  bot.guilds.get('635743502432600084').channels.filter(m=>m.type=='text').forEach((chan, i) => {
+  bot.guilds.cache.get('635743502432600084').channels.cache.filter(m=>m.type=='text').forEach((chan, i) => {
     console.log(`Fetching from ${chan.id}`)
-    chan.fetchMessages()
+    chan.messages.fetch()
     .then(map=>map.filter(m=>(m.author.id=='695351278200553583'||m.author.id=='335927254968434690'))
     .forEach((msg, i) => { msg.delete().then(m=>{console.log(`Deleted ${m.id}`)}) }) )
   });

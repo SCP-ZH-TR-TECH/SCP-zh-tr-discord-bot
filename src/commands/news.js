@@ -1,4 +1,4 @@
-const {RichEmbed} = require("discord.js");
+const {MessageEmbed} = require("discord.js");
 const request = require("request");
 const cheerio = require("cheerio");
 
@@ -21,7 +21,7 @@ module.exports.run = async (bot, message, args) => {
     SCPitem.find('th').slice(0).each((index, element) => {
         stuff.push($(element).text());
     });
-    let NewsEmbed = new RichEmbed()
+    let NewsEmbed = new MessageEmbed()
       .setColor("#660000")
       .setTitle("SCP基金會繁中分部內部資料庫")
       .setDescription("目前連接至繁中分部")
@@ -35,7 +35,7 @@ module.exports.run = async (bot, message, args) => {
 
     if (message.author.id=="268478587651358721") {
       for (chan of bot.__config.DIS_NEWS_CHAN) {
-        var channel = bot.channels.get(chan);
+        var channel = bot.channels.cache.get(chan);
         if (channel&&channel!=undefined) {
           channel.send(NewsEmbed);
         }

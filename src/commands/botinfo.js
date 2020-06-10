@@ -1,8 +1,8 @@
-const {RichEmbed} = require("discord.js");
+const {MessageEmbed} = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
-    let bicon = bot.user.displayAvatarURL;
-    let botembed = new RichEmbed()
+    let bicon = bot.user.displayAvatarURL();
+    let botembed = new MessageEmbed()
     .setDescription("機器人資訊")
     .setColor("#660000")
     .setThumbnail(bicon)

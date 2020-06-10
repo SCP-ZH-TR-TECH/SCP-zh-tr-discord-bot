@@ -7,7 +7,7 @@ module.exports.run = (bot, msgR, user) => {
       for (var role in roleMap[rolechan]) {
         if (role!="__info" &&
           [msgR.emoji.id, msgR.emoji.identifier, msgR.emoji.name].includes(roleMap[rolechan][role].react)) {
-          return msgR.message.guild.member(user).removeRole(roleMap[rolechan][role].role);
+          return msgR.message.guild.member(user).roles.remove(roleMap[rolechan][role].role);
         }
       }
     }

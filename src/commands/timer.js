@@ -1,6 +1,6 @@
-const {RichEmbed} = require("discord.js");
+const {MessageEmbed} = require("discord.js");
 var dp = require('./../utils/durparser.js')
-let ReturnEmbed = new RichEmbed()
+let ReturnEmbed = new MessageEmbed()
   .setColor("#660000")
   .setTitle("用法：")
   .setDescription("&timer <XX:XX:XX.XXX/XhXmXs> [<自訂提醒訊息>]")

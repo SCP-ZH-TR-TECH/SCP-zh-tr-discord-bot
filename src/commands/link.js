@@ -1,4 +1,4 @@
-const {RichEmbed} = require("discord.js");
+const {MessageEmbed} = require("discord.js");
 const request = require("request");
 const cheerio = require("cheerio");
 
@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
         case 2 :
             break;
         default :
-            let ReturnEmbed = new RichEmbed()
+            let ReturnEmbed = new MessageEmbed()
                 .setColor("#660000")
                 .setTitle("用法：")
                 .setDescription("&link <尾網址> <(繁中則免)/cn/en/int>")
@@ -24,7 +24,7 @@ module.exports.run = async (bot, message, args) => {
             return message.channel.send(ReturnEmbed)
     }
     let SCPBranch = SCPStuff.pop();
-    if (!(SCPBranch == "zh" || SCPBranch == "en" || SCPBranch == "cn" || SCPBranch == "int")) return message.channel.send("無法提供網址，用法：&link <尾網址> <(繁中則免)/cn/en/int>");
+    if (!["zh", "en", "cn", "int"].includes(SCPBranch)) return message.channel.send("無法提供網址，用法：&link <尾網址> <(繁中則免)/cn/en/int>");
 
     switch (SCPBranch) {
         case "zh" :
@@ -59,12 +59,12 @@ module.exports.run = async (bot, message, args) => {
           SCPStuff.push(title, rating);
         }
 
-        let SCPEmbed = new RichEmbed()
+        let SCPEmbed = new MessageEmbed()
         .setColor("#660000")
         .setTitle(`SCP基金會繁中分部${SCPStuff.shift()}資料庫`)
         .setDescription(`目前連接至${SCPStuff.shift()}`)
         .setThumbnail("https://i.imgur.com/xKRFpMu.png")
-        .setAuthor(message.author.username, message.author.avatarURL)
+        .setAuthor(message.author.username, message.author.avatarURL())
         .addField("標題", `[${SCPStuff.shift()}](${SCPLink})`, true)
         .addField("現時評分", SCPStuff.shift(), true)
         .setTimestamp()

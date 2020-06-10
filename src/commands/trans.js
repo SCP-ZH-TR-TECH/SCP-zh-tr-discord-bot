@@ -1,4 +1,4 @@
-const {RichEmbed} = require("discord.js");
+const {MessageEmbed} = require("discord.js");
 const gTranslate = require("google-translate-node");
 
 var langchecker = ["af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-cn", "zh",
@@ -12,7 +12,7 @@ var displayList = ["阿拉伯文", "中文 (簡體)", "中文 (繁體)", "捷克
 
 module.exports.run = async(bot, message, args) => {
     if (!args.length) {
-        let ReturnEmbed = new RichEmbed()
+        let ReturnEmbed = new MessageEmbed()
             .setColor("#660000")
             .setTitle("用法：")
             .setDescription("&trans <需翻譯內容> <目標語言代號>")
@@ -22,7 +22,7 @@ module.exports.run = async(bot, message, args) => {
     }
     else {
         if (args[0] == "help" && args.length == 1) {
-            let ReturnEmbed = new RichEmbed()
+            let ReturnEmbed = new MessageEmbed()
                 .setTitle("語言代碼一覽")
                 .setDescription("還是不知道想要的語言的代號？去看看[這裡](https://cloud.google.com/translate/docs/languages?hl=zh-tw)吧！")
                 .setColor("#660000")
@@ -38,7 +38,7 @@ module.exports.run = async(bot, message, args) => {
     let lang = args.pop().toLowerCase();
 
     if (!langchecker.includes(lang)) {
-        let ReturnEmbed = new RichEmbed()
+        let ReturnEmbed = new MessageEmbed()
             .setColor("#660000")
             .setTitle("用法：")
             .setDescription("&trans <需翻譯內容> <目標語言代號>")
@@ -47,11 +47,11 @@ module.exports.run = async(bot, message, args) => {
         return message.channel.send(ReturnEmbed);
     } else {
         gTranslate(args.join(" "), lang).then(res => {
-            let TransEmbed = new RichEmbed()
+            let TransEmbed = new MessageEmbed()
                 .setColor("#660000")
                 .setTitle("GOOGLE翻譯")
                 .setDescription(`以${args.join(" ")}：`)
-                .setAuthor(message.author.username, message.author.avatarURL)
+                .setAuthor(message.author.username, message.author.avatarURL())
                 .addField(`目標語言` ,`${lang}`)
                 .addField(`結果`, `${res}`)
                 .setTimestamp()

@@ -1,4 +1,4 @@
-const {RichEmbed} = require("discord.js");
+const {MessageEmbed} = require("discord.js");
 const request = require("request");
 const cheerio = require("cheerio");
 
@@ -12,7 +12,7 @@ var SCPStuff = ["Springfield Cargo Protection", "Spencer Cartoon Production", "S
 module.exports.run = (bot, message, args) => {
     let SCPNum = message.content.split(' ').slice(1);
     if (SCPNum.length > 2) {
-      let ReturnEmbed = new RichEmbed()
+      let ReturnEmbed = new MessageEmbed()
         .setColor("#660000")
         .setTitle("用法：")
         .setDescription("&scp <SCP編號>")
@@ -37,7 +37,7 @@ module.exports.run = (bot, message, args) => {
         if (typeof B === 'undefined') B = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Icon-round-Question_mark.svg/200px-Icon-round-Question_mark.svg.png"
         if (SCPitem[1] == "從缺") SCPitem[1] = "未知"
 
-      let newEmbed = new RichEmbed()
+      let newEmbed = new MessageEmbed()
         .setColor("#660000")
         .setTitle("SCP基金會繁中分部內部資料庫")
         .setDescription("目前連接至繁中分部")

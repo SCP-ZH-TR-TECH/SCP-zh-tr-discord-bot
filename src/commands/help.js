@@ -1,7 +1,7 @@
-const {RichEmbed} = require("discord.js");
+const {MessageEmbed} = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
-  var helpembed = new RichEmbed()
+  var helpembed = new MessageEmbed()
   .setTitle("繁中分部機器人指令一覽")
   .setDescription("版本：1.2.0")
   .setColor("#660000")
@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args) => {
   if (args.length&&bot.commands.has(args[0].toLowerCase())) {
     var cmd = bot.commands.get(args[0].toLowerCase());
     if (cmd.help.embed&&cmd.help.embed!=undefined) {
-      helpembed = new RichEmbed(cmd.help.embed)
+      helpembed = new MessageEmbed(cmd.help.embed)
       .setTitle(`指令: ${bot.__config.CMD_PREFIX}${cmd.help.name}`)
       .setColor("#660000")
       .setFooter("Powered by SCP ZH-TR Discord Branch", "https://cdn2.iconfinder.com/data/icons/font-awesome/1792/code-512.png");;

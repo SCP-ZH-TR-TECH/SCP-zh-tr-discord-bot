@@ -1,10 +1,10 @@
-const {RichEmbed} = require("discord.js");
+const {MessageEmbed} = require("discord.js");
 const request = require("request");
 const cheerio = require("cheerio");
 
 exports.run = async(bot, message, args) => {
     if (args.length >= 1) {
-      let ReturnEmbed = new RichEmbed()
+      let ReturnEmbed = new MessageEmbed()
             .setColor("#660000")
             .setTitle("用法：")
             .setDescription("&random")
@@ -24,7 +24,7 @@ exports.run = async(bot, message, args) => {
           SCPitem.push($(element).text());
         })
 
-        let randomEmbed = new RichEmbed()
+        let randomEmbed = new MessageEmbed()
         .setColor("#660000")
         .setTitle("SCP基金會繁中分部內部資料庫")
         .setDescription("目前連接至繁中分部")

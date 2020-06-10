@@ -1,4 +1,4 @@
-const {RichEmbed} = require("discord.js");
+const {MessageEmbed} = require("discord.js");
 const request = require("request");
 const cheerio = require("cheerio");
 
@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
         case 2 :
             break;
         default :
-            let ReturnEmbed = new RichEmbed()
+            let ReturnEmbed = new MessageEmbed()
                 .setColor("#660000")
                 .setTitle("用法：")
                 .setDescription("&search <字串> <(繁中則免)/cn/us/int>")
@@ -67,12 +67,12 @@ module.exports.run = async (bot, message, args) => {
           SCPLinks.push("從缺");
         };
 
-        let SCPEmbed = new RichEmbed()
+        let SCPEmbed = new MessageEmbed()
             .setColor("#660000")
             .setTitle(`SCP基金會繁中分部${SCPStuff.shift()}資料庫`)
             .setDescription(`目前連接至${SCPStuff.shift()}`)
             .setThumbnail("https://i.imgur.com/xKRFpMu.png")
-            .setAuthor(message.author.username, message.author.avatarURL)
+            .setAuthor(message.author.username, message.author.avatarURL())
             .addField("搜尋結果", `以${SCPSearch}搜尋：`)
             .setTimestamp()
             .setFooter("不穩定指令，若有問題請回報。", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")

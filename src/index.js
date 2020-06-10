@@ -90,9 +90,9 @@ bot.on("message", (msg) => {
     } else {
       let dmcmdfile = bot.dmcmds.get(cmd);
       if (dmcmdfile&&dmcmdfile!=undefined) {
-        var access = bot.guilds.get("656682156701253635");
+        var access = bot.guilds.cache.get("656682156701253635");
         if (access!=undefined&&access) {
-          access = access.members.get(msg.author.id)
+          access = access.members.cache.get(msg.author.id)
           if (access!=undefined&&access) { dmcmdfile.run(bot,msg,args); }
         }
       }
@@ -100,19 +100,18 @@ bot.on("message", (msg) => {
 });
 
 // uncached message reaction changes event emitter
-bot.on('raw', packet => {
+bot.on('raw', async (packet) => {
     if (!['MESSAGE_REACTION_ADD', 'MESSAGE_REACTION_REMOVE'].includes(packet.t)) return;
-    const channel = bot.channels.get(packet.d.channel_id);
+    const channel = await bot.channels.cache.fetch(packet.d.channel_id);
     if (channel.messages.has(packet.d.message_id)) return;
-    channel.fetchMessage(packet.d.message_id).then(message => {
-        const emoji = packet.d.emoji.id ? `${packet.d.emoji.name}:${packet.d.emoji.id}` : packet.d.emoji.name;
-        const reaction = message.reactions.get(emoji);
-        if (reaction) reaction.users.set(packet.d.user_id, bot.users.get(packet.d.user_id));
-        if (packet.t === 'MESSAGE_REACTION_ADD') {
-            bot.emit('messageReactionAdd', reaction, bot.users.get(packet.d.user_id));
-        }
-        if (packet.t === 'MESSAGE_REACTION_REMOVE') {
-            bot.emit('messageReactionRemove', reaction, bot.users.get(packet.d.user_id));
-        }
-    });
+    var message = await channel.messages.fetch(packet.d.message_id);
+    const emoji = packet.d.emoji.id ? `${packet.d.emoji.name}:${packet.d.emoji.id}` : packet.d.emoji.name;
+    const reaction = message.reactions.cache.get(emoji);
+    var user = await bot.users.cache.fetch(packet.d.user_id)
+    if (reaction) reaction.users.set(packet.d.user_id, user);
+    if (packet.t === 'MESSAGE_REACTION_ADD') {
+      bot.emit('messageReactionAdd', reaction, user);
+    } else if (packet.t === 'MESSAGE_REACTION_REMOVE') {
+      bot.emit('messageReactionRemove', reaction, user);
+    }
 });

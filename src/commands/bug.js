@@ -1,5 +1,5 @@
-const {RichEmbed} = require("discord.js");
-let ReturnEmbed = new RichEmbed()
+const {MessageEmbed} = require("discord.js");
+let ReturnEmbed = new MessageEmbed()
     .setColor("#660000")
     .setTitle("用法：")
     .setDescription("&bug <問題指令> <原因(中英文皆可)>")
@@ -12,9 +12,9 @@ module.exports.run = async (bot, message, args) => {
     let reason = args.join(" ");
     if (!reason) return message.channel.send(ReturnEmbed)
 
-    let bugEmbed = new RichEmbed()
+    let bugEmbed = new MessageEmbed()
     .setDescription("BUG回報")
-    .setAuthor(message.author.username, message.author.avatarURL)
+    .setAuthor(message.author.username, message.author.avatarURL())
     .setColor("#660000")
     .addField("問題指令", `${command}`)
     .addField("舉報成員", `${message.author} 其成員ID: ${message.author.id}`)
@@ -24,7 +24,7 @@ module.exports.run = async (bot, message, args) => {
     .addField("內容", reason)
     .setTimestamp()
 
-    bot.channels.get(`659022266377568276`).send(bugEmbed)
+    bot.channels.cache.get(`659022266377568276`).send(bugEmbed)
 
 }
 

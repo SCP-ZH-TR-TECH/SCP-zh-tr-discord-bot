@@ -1,4 +1,4 @@
-const {RichEmbed} = require("discord.js");
+const {MessageEmbed} = require("discord.js");
 var MT = require("mersenne-twister");
 var gen = new MT();
 
@@ -18,7 +18,7 @@ module.exports.run = (bot, message, args) => {
   } else { side = parseInt(roll); }
 
   if (isNaN(num)||isNaN(side)) {
-    let ReturnEmbed = new RichEmbed()
+    let ReturnEmbed = new MessageEmbed()
       .setColor("#660000")
       .setTitle("用法：")
       .setDescription("&rd XdY±Z (F)", "X為骰子數目，Y為骰子面數，Z為調整數，F為調整選項。")

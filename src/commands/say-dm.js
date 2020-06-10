@@ -4,7 +4,7 @@ module.exports.run = (bot, message, args) => {
   var parse = new parser(args[0]);
   chan = parse.mapChan().out;
   args = args.slice(1);
-  var channel = bot.channels.get(chan);
+  var channel = bot.channels.cache.get(chan);
   if (channel!=undefined&&channel) {
     channel.send(args.join(" "));
   }
