@@ -102,12 +102,12 @@ bot.on("message", (msg) => {
 // uncached message reaction changes event emitter
 bot.on('raw', async (packet) => {
     if (!['MESSAGE_REACTION_ADD', 'MESSAGE_REACTION_REMOVE'].includes(packet.t)) return;
-    const channel = await bot.channels.cache.fetch(packet.d.channel_id);
-    if (channel.messages.has(packet.d.message_id)) return;
+    const channel = await bot.channels.fetch(packet.d.channel_id);
+    if (channel.messages.cache.has(packet.d.message_id)) return;
     var message = await channel.messages.fetch(packet.d.message_id);
     const emoji = packet.d.emoji.id ? `${packet.d.emoji.name}:${packet.d.emoji.id}` : packet.d.emoji.name;
     const reaction = message.reactions.cache.get(emoji);
-    var user = await bot.users.cache.fetch(packet.d.user_id)
+    var user = await bot.users.fetch(packet.d.user_id)
     if (reaction) reaction.users.set(packet.d.user_id, user);
     if (packet.t === 'MESSAGE_REACTION_ADD') {
       bot.emit('messageReactionAdd', reaction, user);
