@@ -108,7 +108,7 @@ bot.on('raw', async (packet) => {
     const emoji = packet.d.emoji.id ? `${packet.d.emoji.name}:${packet.d.emoji.id}` : packet.d.emoji.name;
     const reaction = message.reactions.cache.get(emoji);
     var user = await bot.users.fetch(packet.d.user_id)
-    if (reaction) reaction.users.set(packet.d.user_id, user);
+    if (reaction) reaction.users.cache.set(packet.d.user_id, user);
     if (packet.t === 'MESSAGE_REACTION_ADD') {
       bot.emit('messageReactionAdd', reaction, user);
     } else if (packet.t === 'MESSAGE_REACTION_REMOVE') {
