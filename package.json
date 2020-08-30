@@ -24,18 +24,18 @@
   "dependencies": {
     "better-sqlite3": "^5.4.3",
     "cheerio": "^1.0.0-rc.3",
-    "discord.js": "^12.2.0",
+    "discord.js": "^12.3.1",
     "dotenv": "^8.2.0",
     "enmap": "^5.2.3",
     "express": "^4.17.1",
     "google-translate-node": "^1.0.1",
+    "got": "^11.5.2",
     "mersenne-twister": "^1.1.0",
-    "moment": "^2.24.0",
+    "moment": "^2.27.0",
     "moment-duration-format": "^2.3.2",
     "relevant-google": "^1.0.0",
-    "request": "^2.88.0",
-    "request-promise": "^4.2.5",
-    "requset": "0.0.1-security",
-    "scpper2.js": "^4.0.2"
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "scpper2.js": "^4.0.3"
   }
 }

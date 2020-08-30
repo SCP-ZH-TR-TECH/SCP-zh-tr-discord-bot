@@ -5,13 +5,19 @@ var config = {
   "DIS_NEWS_CHAN": [],
   "DIS_ARTI_CHAN": [],
   "SCP_SITE": "zh",
-  "GOOGLE_API": ""
+  "GOOGLE_API": "",
+  "DIS_VERIFY_TYPE": "wikidotname",
+  "SCP_CHECK_TYPE": "exists",
+  "DIS_VERIFY_CHAN": "",
+  "DIS_VERIFY_MSG": "",
+  "DIS_VERIFY_REACT": "",
+  "DIS_MEM_ROLE": "",
 }
 const fs = require("fs");
 try {
   let custom = JSON.parse(fs.readFileSync('./utils/devconfig.json', 'utf8'));
 
-  confignames = ["CMD_PREFIX", "DIS_TOKEN", "DIS_ADM_ROLE", "DIS_NEWS_CHAN", "DIS_ARTI_CHAN", "SCP_SITE", "GOOGLE_API"];
+  confignames = ["CMD_PREFIX", "DIS_TOKEN", "DIS_ADM_ROLE", "DIS_NEWS_CHAN", "DIS_ARTI_CHAN", "SCP_SITE", "GOOGLE_API", "DIS_VERIFY_TYPE", "SCP_CHECK_TYPE", "DIS_VERIFY_CHAN", "DIS_VERIFY_MSG", "DIS_VERIFY_REACT", "DIS_MEM_ROLE"];
   for (var name of confignames) { if (custom[name] !== undefined && custom[name]) {config[name] = custom[name]} };
 } catch (e) {
   if (e.code==`ENOENT`) {
@@ -39,6 +45,12 @@ if (process.env.SZB_FORCE_ENV === undefined || process.env.SZB_FORCE_ENV.toLower
       config.DIS_ARTI_CHAN = JSON.parse(process.env.SZB_DIS_ARTI_CHAN)
     } else { config.DIS_ARTI_CHAN = process.env.SZB_DIS_ARTI_CHAN }
   };
+  if (process.env.SZB_DIS_VERIFY_TYPE !==undefined && process.env.SZB_DIS_VERIFY_TYPE ) { config.DIS_VERIFY_TYPE  = process.env.SZB_DIS_VERIFY_TYPE  };
+  if (process.env.SZB_SCP_CHECK_TYPE !==undefined && process.env.SZB_SCP_CHECK_TYPE ) { config.SCP_CHECK_TYPE  = process.env.SZB_SCP_CHECK_TYPE  };
+  if (process.env.SZB_DIS_VERIFY_CHAN !==undefined && process.env.SZB_DIS_VERIFY_CHAN ) { config.DIS_VERIFY_CHAN  = process.env.SZB_DIS_VERIFY_CHAN  };
+  if (process.env.SZB_DIS_VERIFY_MSG !==undefined && process.env.SZB_DIS_VERIFY_MSG ) { config.DIS_VERIFY_MSG  = process.env.SZB_DIS_VERIFY_MSG  };
+  if (process.env.SZB_DIS_VERIFY_REACT !==undefined && process.env.SZB_DIS_VERIFY_REACT ) { config.DIS_VERIFY_REACT  = process.env.SZB_DIS_VERIFY_REACT  };
+  if (process.env.SZB_DIS_MEM_ROLE !==undefined && process.env.SZB_DIS_MEM_ROLE ) { config.DIS_MEM_ROLE  = process.env.SZB_DIS_MEM_ROLE  };
 }
 
 
