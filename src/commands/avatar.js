@@ -9,6 +9,7 @@ exports.run = async (bot, message, args) => {
       .setAuthor(message.author.username, message.author.avatarURL())
       .setColor("#660000");
     message.channel.send(avatarEmbed);
+    return
   }
   let User = message.author;
   const avatarEmbed = new MessageEmbed()
