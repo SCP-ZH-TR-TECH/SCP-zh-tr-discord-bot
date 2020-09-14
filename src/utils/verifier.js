@@ -99,8 +99,7 @@ module.exports = (bot) => {
       if (msgR.message.channel.id !== verifier.channel) return;
       if (msgR.message.id !== verifier.message) return;
       if (![msgR.emoji.id, msgR.emoji.identifier, msgR.emoji.name].includes(this.reaction)) return;
-      let guild = bot.guilds.resolve(msgR.message.channel), member;
-      if (guild) member = guild.members.resolve(user);
+      let member = msgR.message.channel.guild.members.resolve(user);
       if (member) member.roles.add(verifier.role);
     })
   } else if (verifier.type === "wikidotname") {

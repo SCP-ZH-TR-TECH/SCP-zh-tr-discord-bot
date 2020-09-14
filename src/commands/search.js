@@ -16,7 +16,7 @@ module.exports.run = async (bot, message, args) => {
             let ReturnEmbed = new MessageEmbed()
                 .setColor("#660000")
                 .setTitle("用法：")
-                .setDescription("&search <字串> <(繁中則免)/cn/us/int>")
+                .setDescription("&search <字串> <(繁中則免)/cn/en/int>")
                 .setTimestamp()
                 .setFooter("不穩定指令，若有問題請回報。", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
             return message.channel.send(ReturnEmbed)
@@ -24,7 +24,7 @@ module.exports.run = async (bot, message, args) => {
     let SCPBranch = SCPStuff.pop();
     let SCPSearch = SCPStuff.pop();
 
-    if (!(SCPBranch == "zh" || SCPBranch == "en" || SCPBranch == "cn" || SCPBranch == "int")) return message.channel.send("無法提供網址，用法：&search <字串> <(繁中則免)/cn/us/int>");
+    if (!(SCPBranch == "zh" || SCPBranch == "en" || SCPBranch == "cn" || SCPBranch == "int")) return message.channel.send("無法提供網址，用法：&search <字串> <(繁中則免)/cn/en/int>");
 
     switch (SCPBranch) {
         case "zh" :
