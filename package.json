@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/KyleLin921021/SCP-zh-tr-bot#readme",
   "dependencies": {
+    "axios": ">=0.21.1",
     "better-sqlite3": "^5.4.3",
     "cheerio": "^1.0.0-rc.3",
     "discord.js": "^12.3.1",
