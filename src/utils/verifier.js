@@ -109,34 +109,23 @@ module.exports = (bot) => {
       if (!msg.content.toLowerCase().startsWith(bot.__config.CMD_PREFIX+'verify ')) return;
       let username = msg.content.slice((bot.__config.CMD_PREFIX+'verify ').length).trim();
       msg.channel.send("正在驗證您的身份中......\nVerifying your identity...").then(reply=>{
+        let checkwd = async ()=>{
+          let k = await verifier.__WDChecker(username);
+          if (k) {
+            msg.member.roles.add(verifier.role);
+            reply.edit("權限已賦予。\nAccess granted.");
+          } else {
+            reply.edit("權限不足。\nAccess denied.");
+          }
+        }
         verifier.__getUsers(username).then(users => {
           if (verifier.__scpperChecker(users)) {
             msg.member.roles.add(verifier.role);
             reply.edit("權限已賦予。\nAccess granted.");
-          } else {
-            verifier.__getWDUser(username).then(res=>{
-              verifier.__WDChecker(username, res.userNames).then(k=>{
-                if (k) {
-                  msg.member.roles.add(verifier.role);
-                  reply.edit("權限已賦予。\nAccess granted.");
-                } else {
-                  reply.edit("權限不足。\nAccess denied.");
-                }
-              })
-            })
-          };
+          } else checkwd();
         }).catch(e=>{
           console.log(e);
-          verifier.__getWDUser(username).then(res=>{
-            verifier.__WDChecker(username, res.userNames).then(k=>{
-              if (k) {
-                msg.member.roles.add(verifier.role);
-                reply.edit("權限已賦予。\nAccess granted.");
-              } else {
-                reply.edit("權限不足。\nAccess denied.");
-              }
-            })
-          })
+          checkwd();
         })
       })
     })
