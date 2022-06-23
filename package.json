@@ -30,7 +30,7 @@
     "enmap": "^5.2.3",
     "express": "^4.17.1",
     "google-translate-node": "^1.0.1",
-    "got": "^11.5.2",
+    "got": "^11.8.5",
     "mersenne-twister": "^1.1.0",
     "moment": "^2.27.0",
     "moment-duration-format": "^2.3.2",
