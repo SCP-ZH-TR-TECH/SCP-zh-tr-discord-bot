@@ -32,7 +32,7 @@
     "google-translate-node": "^1.0.1",
     "got": "^11.5.2",
     "mersenne-twister": "^1.1.0",
-    "moment": "^2.27.0",
+    "moment": "^2.29.4",
     "moment-duration-format": "^2.3.2",
     "relevant-google": "^1.0.0",
     "request": "^2.88.2",
