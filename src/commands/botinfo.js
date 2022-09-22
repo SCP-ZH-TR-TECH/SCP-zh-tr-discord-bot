@@ -1,16 +1,18 @@
-const {MessageEmbed} = require("discord.js");
+const {EmbedBuilder} = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
     let bicon = bot.user.displayAvatarURL();
-    let botembed = new MessageEmbed()
+    let botembed = new EmbedBuilder()
     .setDescription("機器人資訊")
     .setColor("#660000")
     .setThumbnail(bicon)
-    .addField("機器人", bot.user.username)
-    .addField("作者", "SCP ZH-TR Discord 研究部門的 ChAoS-UnItY , Joch , Vomiter")
-    .addField("創建於", bot.user.createdAt);
+    .addFields([
+      {name: "機器人", value: bot.user.username},
+      {name: "作者", value: "SCP ZH-TR Discord 研究部門的 ChAoS-UnItY , Joch , Vomiter"},
+      {name: "創建於", value: bot.user.createdAt}
+    ]);
 
-    message.channel.send(botembed);
+    message.channel.send({embeds: [botembed]});
 }
 
 module.exports.help = {

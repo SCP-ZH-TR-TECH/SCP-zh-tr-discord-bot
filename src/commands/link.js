@@ -1,4 +1,4 @@
-const {MessageEmbed} = require("discord.js");
+const {EmbedBuilder} = require("discord.js");
 const request = require("request");
 const cheerio = require("cheerio");
 
@@ -15,13 +15,13 @@ module.exports.run = async (bot, message, args) => {
         case 2 :
             break;
         default :
-            let ReturnEmbed = new MessageEmbed()
+            let ReturnEmbed = new EmbedBuilder()
                 .setColor("#660000")
                 .setTitle("用法：")
                 .setDescription("&link <尾網址> <(繁中則免)/cn/en/int>")
                 .setTimestamp()
                 .setFooter("不穩定指令，若有問題請回報。", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
-            return message.channel.send(ReturnEmbed)
+            return message.channel.send({embeds: [ReturnEmbed]});
     }
     let SCPBranch = SCPStuff.pop();
     if (!["zh", "en", "cn", "int"].includes(SCPBranch)) return message.channel.send("無法提供網址，用法：&link <尾網址> <(繁中則免)/cn/en/int>");
@@ -59,18 +59,20 @@ module.exports.run = async (bot, message, args) => {
           SCPStuff.push(title, rating);
         }
 
-        let SCPEmbed = new MessageEmbed()
+        let SCPEmbed = new EmbedBuilder()
         .setColor("#660000")
         .setTitle(`SCP基金會繁中分部${SCPStuff.shift()}資料庫`)
         .setDescription(`目前連接至${SCPStuff.shift()}`)
         .setThumbnail("https://i.imgur.com/xKRFpMu.png")
         .setAuthor(message.author.username, message.author.avatarURL())
-        .addField("標題", `[${SCPStuff.shift()}](${SCPLink})`, true)
-        .addField("現時評分", SCPStuff.shift(), true)
+        .addFields([
+          {name: "標題", value: `[${SCPStuff[0]}](${SCPLink})`, inline: true},
+          {name: "現時評分", value: SCPStuff[1], inline: true},
+        ])
         .setTimestamp()
         .setFooter("若直連結果顯示為*不存在之頁面*代表該頁面尚未被創建。", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
 
-        message.channel.send(SCPEmbed);
+        message.channel.send({embeds: [SCPEmbed]});
     });
 
 }

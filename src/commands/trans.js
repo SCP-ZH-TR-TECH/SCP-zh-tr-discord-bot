@@ -1,4 +1,4 @@
-const {MessageEmbed} = require("discord.js");
+const {EmbedBuilder} = require("discord.js");
 const gTranslate = require("google-translate-node");
 
 var langchecker = ["af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-cn", "zh",
@@ -12,51 +12,53 @@ var displayList = ["阿拉伯文", "中文 (簡體)", "中文 (繁體)", "捷克
 
 module.exports.run = async(bot, message, args) => {
     if (!args.length) {
-        let ReturnEmbed = new MessageEmbed()
+        let ReturnEmbed = new EmbedBuilder()
             .setColor("#660000")
             .setTitle("用法：")
             .setDescription("&trans <需翻譯內容> <目標語言代號>")
             .setTimestamp()
             .setFooter("不知道想要的語言的代號？試試&trans help吧！", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
-        return message.channel.send(ReturnEmbed)
+        return message.channel.send({embeds: [ReturnEmbed]});
     }
     else {
         if (args[0] == "help" && args.length == 1) {
-            let ReturnEmbed = new MessageEmbed()
+            let ReturnEmbed = new EmbedBuilder()
                 .setTitle("語言代碼一覽")
                 .setDescription("還是不知道想要的語言的代號？去看看[這裡](https://cloud.google.com/translate/docs/languages?hl=zh-tw)吧！")
                 .setColor("#660000")
                 .setTimestamp()
                 .setFooter("Powered by Google Cloud", "http://chaos-module.wdfiles.com/local--files/start/google-icon-for-bot")
             for (let i = 0;langlist.length-1 > i;i++) {
-                ReturnEmbed.addField(langlist[i], displayList[i], true);
+                ReturnEmbed.addFields([{name: langlist[i], value: displayList[i], inline: true}]);
             }
-            return message.channel.send(ReturnEmbed)
+            return message.channel.send({embeds: [ReturnEmbed]});
         }
     }
 
     let lang = args.pop().toLowerCase();
 
     if (!langchecker.includes(lang)) {
-        let ReturnEmbed = new MessageEmbed()
+        let ReturnEmbed = new EmbedBuilder()
             .setColor("#660000")
             .setTitle("用法：")
             .setDescription("&trans <需翻譯內容> <目標語言代號>")
             .setTimestamp()
             .setFooter("不知道想要的語言的代碼？試試&trans help吧！", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
-        return message.channel.send(ReturnEmbed);
+        return message.channel.send({embeds: [ReturnEmbed]});
     } else {
         gTranslate(args.join(" "), lang).then(res => {
-            let TransEmbed = new MessageEmbed()
+            let TransEmbed = new EmbedBuilder()
                 .setColor("#660000")
                 .setTitle("GOOGLE翻譯")
                 .setDescription(`以${args.join(" ")}：`)
                 .setAuthor(message.author.username, message.author.avatarURL())
-                .addField(`目標語言` ,`${lang}`)
-                .addField(`結果`, `${res}`)
+                .addFields([
+                  {name: `目標語言`, value: `${lang}`},
+                  {name: `結果`, value: `${res}`},
+                ])
                 .setTimestamp()
                 .setFooter(`不知道想要的語言的代號？試試&trans help吧！`, "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
-            message.channel.send(TransEmbed);
+            message.channel.send({embeds: [TransEmbed]});
         }, err => {
           console.log(err);
           message.channel.send("未知錯誤")

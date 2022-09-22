@@ -1,25 +1,25 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 //TODO no tagging to get other's avatar
 exports.run = async (bot, message, args) => {
   if (message.mentions.users.first() !== message.author) {
-    const avatarEmbed = new MessageEmbed()
+    const avatarEmbed = new EmbedBuilder()
       .setTitle("頭貼")
       .setDescription(`標註他人取得該用戶的頭貼目前暫被禁用`)
       .setAuthor(message.author.username, message.author.avatarURL())
       .setColor("#660000");
-    message.channel.send(avatarEmbed);
+    message.channel.send({embeds: [avatarEmbed]});
     return
   }
   let User = message.author;
-  const avatarEmbed = new MessageEmbed()
+  const avatarEmbed = new EmbedBuilder()
     .setTitle("頭貼")
     .setURL(User.avatarURL())
     .setDescription(`頭像主人：${User}`)
     .setAuthor(message.author.username, message.author.avatarURL())
     .setColor("#660000")
     .setImage(User.avatarURL());
-  message.channel.send(avatarEmbed);
+  message.channel.send({embeds: [avatarEmbed]});
 
 }
 

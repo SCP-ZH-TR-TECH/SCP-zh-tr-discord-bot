@@ -1,4 +1,4 @@
-const {MessageEmbed} = require("discord.js");
+const {EmbedBuilder} = require("discord.js");
 var MT = require("mersenne-twister");
 var gen = new MT();
 
@@ -18,15 +18,17 @@ module.exports.run = (bot, message, args) => {
   } else { side = parseInt(roll); }
 
   if (isNaN(num)||isNaN(side)) {
-    let ReturnEmbed = new MessageEmbed()
+    let ReturnEmbed = new EmbedBuilder()
       .setColor("#660000")
       .setTitle("用法：")
       .setDescription("&rd XdY±Z (F)", "X為骰子數目，Y為骰子面數，Z為調整數，F為調整選項。")
-      .addField(`調整選項: "-e" / "--each"`, `調整數作用在每個單獨的骰子結果上。`)
-      .addField(`調整選項: "-t" / "--total"`, `調整數作用在骰子結果總和上。`)
+      .addFields([
+        {name: `調整選項: "-e" / "--each"`, value: `調整數作用在每個單獨的骰子結果上。`},
+        {name: `調整選項: "-t" / "--total"`, value: `調整數作用在骰子結果總和上。`},
+      ])
       .setTimestamp()
       .setFooter("不穩定指令，若有問題請回報。", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
-    return message.channel.send(ReturnEmbed)
+    return message.channel.send({embeds: [ReturnEmbed]});
   }
   var sum = 0, all = [], result="";
   for (var i = 0; i < num; i++) {

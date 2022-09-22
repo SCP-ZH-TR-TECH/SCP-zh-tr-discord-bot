@@ -1,6 +1,6 @@
-const {MessageEmbed} = require("discord.js");
+const {EmbedBuilder} = require("discord.js");
 var dp = require('./../utils/durparser.js')
-let ReturnEmbed = new MessageEmbed()
+let ReturnEmbed = new EmbedBuilder()
   .setColor("#660000")
   .setTitle("用法：")
   .setDescription("&timer <XX:XX:XX.XXX/XhXmXs> [<自訂提醒訊息>]")
@@ -16,11 +16,11 @@ module.exports.run = (bot, message, args) => {
     } else if (t.includes("h")||t.includes("m")||t.includes("s")) {
       var time = new dp(t, "initial");
     } else {
-      return message.channel.send(ReturnEmbed)
+      return message.channel.send({embeds: [ReturnEmbed]});
     }
   } catch (e) {
     if (e.code = `INVALID_TIME_REP`) {
-      return message.channel.send(ReturnEmbed)
+      return message.channel.send({embeds: [ReturnEmbed]});
     } else throw e;
   }
   t = time.toMS();

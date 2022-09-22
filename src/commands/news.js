@@ -1,4 +1,4 @@
-const {MessageEmbed} = require("discord.js");
+const {EmbedBuilder} = require("discord.js");
 const request = require("request");
 const cheerio = require("cheerio");
 
@@ -21,15 +21,17 @@ module.exports.run = async (bot, message, args) => {
     SCPitem.find('th').slice(0).each((index, element) => {
         stuff.push($(element).text());
     });
-    let NewsEmbed = new MessageEmbed()
+    let NewsEmbed = new EmbedBuilder()
       .setColor("#660000")
       .setTitle("SCP基金會繁中分部內部資料庫")
       .setDescription("目前連接至繁中分部")
       .setThumbnail("https://i.imgur.com/xKRFpMu.png")
-      .addField("標題", "[" + stuff.shift() + "](" + baseurl + A + ")", true)
-      .setAuthor(stuff.shift(), B)
-      .addField("現時評分", stuff.shift(), true)
-      .addField("創建於", stuff.shift(), true)
+      .addFields([
+        {name: "標題", value: `[${stuff[0]}](${baseurl}${A})`, inline: true},
+        {name: "現時評分", value: stuff[2], inline: true},
+        {name: "創建於", value: stuff[3], inline: true},
+      ])
+      .setAuthor(stuff[1], B)
       .setTimestamp()
       .setFooter("不穩定指令，若有問題請回報。", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
 
@@ -37,11 +39,11 @@ module.exports.run = async (bot, message, args) => {
       for (chan of bot.__config.DIS_NEWS_CHAN) {
         var channel = bot.channels.cache.get(chan);
         if (channel&&channel!=undefined) {
-          channel.send(NewsEmbed);
+          channel.send({embeds: [NewsEmbed]});
         }
       }
     } else {
-      message.channel.send(NewsEmbed);
+      message.channel.send({embeds: [NewsEmbed]});
     }
   })
 }

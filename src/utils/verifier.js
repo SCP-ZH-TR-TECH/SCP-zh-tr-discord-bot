@@ -103,7 +103,7 @@ module.exports = (bot) => {
       if (member) member.roles.add(verifier.role);
     })
   } else if (verifier.type === "wikidotname") {
-    bot.on("message", msg => {
+    bot.on("messageCreate", msg => {
       if (msg.author.bot) return;
       if (msg.channel.id !== verifier.channel) return;
       if (!msg.content.toLowerCase().startsWith(bot.__config.CMD_PREFIX+'verify ')) return;

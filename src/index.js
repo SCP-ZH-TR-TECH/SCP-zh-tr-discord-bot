@@ -2,7 +2,21 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const config = require("./utils/configLoader.js");
 const Scpper = require('scpper2.js');
-const bot = new Discord.Client({disableEveryone: true});
+const bot = new Discord.Client({
+  intents: [
+    Discord.GatewayIntentBits.Guilds,
+    Discord.GatewayIntentBits.GuildMembers,
+    Discord.GatewayIntentBits.GuildMessages,
+    Discord.GatewayIntentBits.GuildEmojisAndStickers,
+    Discord.GatewayIntentBits.DirectMessages,
+    Discord.GatewayIntentBits.DirectMessageReactions,
+    Discord.GatewayIntentBits.MessageContent,
+  ],
+  partials: [
+    Discord.Partials.Channel,
+    Discord.Partials.Reaction,
+  ],
+});
 bot.commands = new Discord.Collection();
 bot.admcmds = new Discord.Collection();
 bot.dmcmds = new Discord.Collection();
@@ -63,7 +77,7 @@ fs.readdir("./commands/", (err, files) => {
 });
 
 
-bot.on("message", (msg) => {
+bot.on("messageCreate", (msg) => {
     if (msg.author.bot && msg.author.id!="268478587651358721") return;
     if (!msg.content.startsWith(pref)) return;
     let msgArray = msg.content.split(" ");
@@ -73,7 +87,7 @@ bot.on("message", (msg) => {
       if (args[i]==='') { args.splice(i,1); i--; };
     };
 
-    if (msg.channel.type != "dm") {
+    if (!["DM", "GROUP_DM"].includes(msg.channel.type)) {
       let cmdfile = bot.commands.get(cmd);
       if (cmdfile&&cmdfile!=undefined) { cmdfile.run(bot,msg,args); }
 

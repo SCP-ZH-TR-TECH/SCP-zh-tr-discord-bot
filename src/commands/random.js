@@ -1,16 +1,16 @@
-const {MessageEmbed} = require("discord.js");
+const {EmbedBuilder} = require("discord.js");
 const request = require("request");
 const cheerio = require("cheerio");
 
 exports.run = async(bot, message, args) => {
     if (args.length >= 1) {
-      let ReturnEmbed = new MessageEmbed()
+      let ReturnEmbed = new EmbedBuilder()
             .setColor("#660000")
             .setTitle("用法：")
             .setDescription("&random")
             .setTimestamp()
             .setFooter("不穩定指令，若有問題請回報。", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
-      return message.channel.send(ReturnEmbed)
+      return message.channel.send({embeds: [ReturnEmbed]});
     }
     request(`http://scp-zh-tr.wikidot.com/random-workbanch/offset/${Math.floor(Math.random() * Math.floor(500))}`, (err, res, body) => {
         let $ = cheerio.load(body);
@@ -24,19 +24,21 @@ exports.run = async(bot, message, args) => {
           SCPitem.push($(element).text());
         })
 
-        let randomEmbed = new MessageEmbed()
+        let randomEmbed = new EmbedBuilder()
         .setColor("#660000")
         .setTitle("SCP基金會繁中分部內部資料庫")
         .setDescription("目前連接至繁中分部")
         .setThumbnail("https://i.imgur.com/xKRFpMu.png")
-        .addField("標題", "[" + SCPitem.shift() + "](" + A + ")", true)
-        .setAuthor(SCPitem.shift(), B)
-        .addField("現時評分", SCPitem.shift(), true)
-        .addField("創建於", SCPitem.shift(), true)
+        .addFields([
+          {name: "標題", value: `[${SCPitem[0]}](${A})`, inline: true},
+          {name: "現時評分", value: SCPitem[2], inline: true},
+          {name: "創建於", value: SCPitem[3], inline: true},
+        ])
+        .setAuthor(SCPitem[1], B)
         .setTimestamp()
         .setFooter("不穩定指令，若有問題請回報。", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
 
-      message.channel.send(randomEmbed)
+      message.channel.send({embeds: [randomEmbed]});
     })
 }
 

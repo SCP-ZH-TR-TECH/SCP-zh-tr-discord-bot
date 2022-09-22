@@ -1,4 +1,4 @@
-const {MessageEmbed} = require("discord.js");
+const {EmbedBuilder} = require("discord.js");
 const request = require("request");
 const rp = require("request-promise");
 const cheerio = require("cheerio");
@@ -34,7 +34,7 @@ module.exports = (bot) => {
       })
     },
     getRecEmbed: async function(page) {
-      let randomEmbed = new MessageEmbed()
+      let randomEmbed = new EmbedBuilder()
       var $ = await rp({ uri:page, transform: function (body) { return cheerio.load(body); }})
       if (!$('#page-title').length) return null;
       else {
@@ -51,10 +51,12 @@ module.exports = (bot) => {
         .setTitle("SCP基金會繁中分部內部資料庫")
         .setDescription("目前連接至繁中分部")
         .setThumbnail("https://i.imgur.com/xKRFpMu.png")
-        .addField("標題", `[${title}](${page})`, true)
+        .addFields([
+          {name: "標題", value: `[${title}](${page})`, inline: true},
+          {name: "現時評分", value: rating, inline: true},
+          {name: "摘錄", value: extract, inline: true},
+        ])
         .setAuthor(author[1], author[0])
-        .addField("現時評分", rating, true)
-        .addField("摘錄", extract, true)
         .setTimestamp()
         .setFooter("不穩定指令，若有問題請回報。", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
       }

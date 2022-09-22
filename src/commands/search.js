@@ -1,4 +1,4 @@
-const {MessageEmbed} = require("discord.js");
+const {EmbedBuilder} = require("discord.js");
 const request = require("request");
 const cheerio = require("cheerio");
 
@@ -13,13 +13,13 @@ module.exports.run = async (bot, message, args) => {
         case 2 :
             break;
         default :
-            let ReturnEmbed = new MessageEmbed()
+            let ReturnEmbed = new EmbedBuilder()
                 .setColor("#660000")
                 .setTitle("用法：")
                 .setDescription("&search <字串> <(繁中則免)/cn/en/int>")
                 .setTimestamp()
                 .setFooter("不穩定指令，若有問題請回報。", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
-            return message.channel.send(ReturnEmbed)
+            return message.channel.send({embeds: [ReturnEmbed]});
     }
     let SCPBranch = SCPStuff.pop();
     let SCPSearch = SCPStuff.pop();
@@ -67,21 +67,21 @@ module.exports.run = async (bot, message, args) => {
           SCPLinks.push("從缺");
         };
 
-        let SCPEmbed = new MessageEmbed()
+        let SCPEmbed = new EmbedBuilder()
             .setColor("#660000")
             .setTitle(`SCP基金會繁中分部${SCPStuff.shift()}資料庫`)
             .setDescription(`目前連接至${SCPStuff.shift()}`)
             .setThumbnail("https://i.imgur.com/xKRFpMu.png")
             .setAuthor(message.author.username, message.author.avatarURL())
-            .addField("搜尋結果", `以${SCPSearch}搜尋：`)
+            .addFields({name: "搜尋結果", value: `以${SCPSearch}搜尋：`})
             .setTimestamp()
             .setFooter("不穩定指令，若有問題請回報。", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
 
         for (var i = 0; i<5 && SCPTitles.length>0; i++) {
-          SCPEmbed.addField(SCPTitles.shift(), SCPLinks.shift(), true)
+          SCPEmbed.addFields({name: SCPTitles.shift(), value: SCPLinks.shift(), inline: true})
         }
 
-        message.channel.send(SCPEmbed);
+        message.channel.send({embeds: [SCPEmbed]});
 
     });
 

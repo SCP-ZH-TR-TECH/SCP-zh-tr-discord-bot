@@ -8,7 +8,7 @@
     "start": "cd src&&node index.js"
   },
   "engines": {
-    "node": "12.14.0",
+    "node": "^16.9.0",
     "npm": "*"
   },
   "repository": {
@@ -23,9 +23,8 @@
   "homepage": "https://github.com/KyleLin921021/SCP-zh-tr-bot#readme",
   "dependencies": {
     "axios": ">=0.21.1",
-    "better-sqlite3": "^5.4.3",
     "cheerio": "^1.0.0-rc.3",
-    "discord.js": "^12.5.1",
+    "discord.js": "^14",
     "dotenv": "^8.2.0",
     "enmap": "^5.2.3",
     "express": "^4.17.1",

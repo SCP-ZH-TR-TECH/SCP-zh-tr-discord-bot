@@ -26,10 +26,12 @@ module.exports.run = async (bot, message, args) => {
       .setTitle("SCP基金會繁中分部內部資料庫")
       .setDescription("目前連接至繁中分部")
       .setThumbnail("https://i.imgur.com/xKRFpMu.png")
-      .addField("標題", "[" + stuff.shift() + "](" + baseurl + A + ")", true)
-      .setAuthor(stuff.shift(), B)
-      .addField("現時評分", stuff.shift(), true)
-      .addField("創建於", stuff.shift(), true)
+      .addFields([
+        {name: "標題", value: `[${stuff[0]}](${baseurl}${A})`, inline: true},
+        {name: "現時評分", value: stuff[2], inline: true},
+        {name: "創建於", value: stuff[3], inline: true},
+      ])
+      .setAuthor(stuff[1], B)
       .setTimestamp()
       .setFooter("不穩定指令，若有問題請回報。", "https://cdn4.iconfinder.com/data/icons/glyphlibrary-one/100/warning-circle-512.png")
 
